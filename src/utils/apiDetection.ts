@@ -16,7 +16,7 @@ const API_PATHS: Record<AIApiType, string[]> = {
   Proofreader: ["Proofreader", "ai.proofreader"],
   Writer: ["Writer", "ai.writer"],
   Rewriter: ["Rewriter", "ai.rewriter"],
-  PromptAPI: ["LanguageModel", "ai.assistant"],
+  LanguageModel: ["LanguageModel", "ai.assistant"],
 };
 
 /**
@@ -85,7 +85,7 @@ export function getAvailableApis(): AIApiType[] {
     "Proofreader",
     "Writer",
     "Rewriter",
-    "PromptAPI",
+    "LanguageModel",
   ];
 
   return apis.filter(isApiAvailable);

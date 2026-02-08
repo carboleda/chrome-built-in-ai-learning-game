@@ -12,7 +12,7 @@ export type AIApiType =
   | "Proofreader"
   | "Writer"
   | "Rewriter"
-  | "PromptAPI";
+  | "LanguageModel";
 
 /**
  * Result of validating user's code submission
