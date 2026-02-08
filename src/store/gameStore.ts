@@ -11,6 +11,7 @@ import {
   getLevelById,
   getNextLevel,
   getFirstLevel,
+  levels,
 } from "../data/levels/index";
 
 /**
@@ -77,11 +78,18 @@ export const useGameStore = create<GameStore>()(
       ...initialState,
 
       initGame: () => {
-        const firstLevel = getFirstLevel();
-        if (firstLevel) {
+        const { completedLevels } = get();
+
+        // Find the first uncompleted level, or fallback to first level
+        const firstUncompletedLevel = levels.find(
+          (level) => !completedLevels.includes(level.id),
+        );
+        const targetLevel = firstUncompletedLevel ?? getFirstLevel();
+
+        if (targetLevel) {
           set({
-            currentLevel: firstLevel,
-            userCode: firstLevel.starterCode,
+            currentLevel: targetLevel,
+            userCode: targetLevel.starterCode,
             validationResult: null,
             executionError: null,
           });
