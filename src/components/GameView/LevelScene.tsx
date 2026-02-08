@@ -10,8 +10,7 @@ import { ProgressIndicator } from "./ProgressIndicator";
 import { isLastLevel } from "../../data/levels";
 
 export function LevelScene() {
-  const { validationResult, isExecuting, currentLevel, nextLevel } =
-    useGameStore();
+  const { validationResult, isExecuting, currentLevel } = useGameStore();
 
   // Determine Scribe's mood based on state
   const getMood = (): "idle" | "thinking" | "happy" | "celebrating" => {
@@ -27,7 +26,7 @@ export function LevelScene() {
   return (
     <div className="flex h-full flex-col items-center justify-center p-8">
       {/* Scribe Character */}
-      <div className="mb-8">
+      <div className="mb-4">
         <ScribeCharacter mood={getMood()} />
       </div>
 
@@ -43,16 +42,6 @@ export function LevelScene() {
             {validationResult.message}
           </pre>
         </div>
-      )}
-
-      {/* Next Level Button */}
-      {isComplete && hasNextLevel && (
-        <button
-          onClick={nextLevel}
-          className="mt-6 rounded-lg bg-[var(--color-leaf-gold)] px-8 py-3 text-lg font-bold text-[var(--color-forest-dark)] transition-transform hover:scale-105"
-        >
-          Next Level →
-        </button>
       )}
 
       {/* Victory Message */}

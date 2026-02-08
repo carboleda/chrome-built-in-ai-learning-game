@@ -6,6 +6,7 @@
 
 import Editor from "@monaco-editor/react";
 import { useGameStore } from "../../store/gameStore";
+import { isLastLevel } from "../../data/levels";
 
 export function CodeEditor() {
   const {
@@ -13,8 +14,11 @@ export function CodeEditor() {
     setCode,
     runCode,
     resetLevel,
+    nextLevel,
     isExecuting,
     executionError,
+    validationResult,
+    currentLevel,
   } = useGameStore();
 
   const handleEditorChange = (value: string | undefined) => {
@@ -71,6 +75,16 @@ export function CodeEditor() {
         >
           Reset
         </button>
+        {validationResult?.complete &&
+          currentLevel &&
+          !isLastLevel(currentLevel.id) && (
+            <button
+              onClick={nextLevel}
+              className="rounded-lg bg-[var(--color-leaf-gold)] px-6 py-2 font-semibold text-[var(--color-forest-dark)] transition-all hover:scale-105"
+            >
+              Next Level →
+            </button>
+          )}
       </div>
     </div>
   );

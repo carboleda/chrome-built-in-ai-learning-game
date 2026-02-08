@@ -12,7 +12,7 @@ interface InstructionsProps {
 
 export function Instructions({ content }: InstructionsProps) {
   return (
-    <div className="prose prose-invert max-w-none overflow-auto bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] p-2 text-sm">
+    <div className="prose prose-invert max-w-none overflow-auto bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] px-2 pb-2 text-sm">
       <Markdown
         components={{
           // Custom styling for markdown elements
