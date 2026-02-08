@@ -17,7 +17,7 @@ export function LevelHeader({ level }: LevelHeaderProps) {
         <span className="rounded-full bg-[var(--color-leaf-gold)] px-3 py-1 text-sm font-bold text-[var(--color-forest-dark)]">
           Level {level.id}
         </span>
-        <h1 className="text-lg font-bold text-white">{level.title}</h1>
+        <h1 className="text-lg font-bold text-white">🐿️ {level.title}</h1>
       </div>
       <p className="mt-1 text-sm text-[var(--color-leaf-gold)]">
         API: {level.api}

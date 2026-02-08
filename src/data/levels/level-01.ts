@@ -12,13 +12,9 @@ import type {
 } from "../../engine/types";
 
 const instructions = `
-## 🐿️ Level 1: The Cold Start
-
 ### Checking the Acorn Reserves
 
 Scribe is ready to work, but sometimes the "Forest Brain" needs to download new data before it can detect languages. If you try to use the detector before it's ready, Scribe will get a headache!
-
----
 
 ### Challenge Instructions
 
@@ -29,8 +25,6 @@ Before creating the detector, you must check the **availability**.
 3. Only if it returns \`'available'\`, create the detector.
 
 > **Note:** Always check availability before creating AI instances to ensure a smooth user experience!
-
----
 
 ### Expected Output
 

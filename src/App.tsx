@@ -35,19 +35,24 @@ function App() {
       <ApiWarning />
       <div className="flex-1">
         <SplitPane
-          left={<CodeEditor />}
-          right={
+          left={
             <div className="flex h-full flex-col">
               <LevelHeader level={currentLevel} />
-              <div className="flex flex-1 flex-col overflow-hidden">
-                {/* Instructions - scrollable */}
-                <div className="max-h-[40%] overflow-auto border-b border-[var(--color-forest-light)]/30">
-                  <Instructions content={currentLevel.instructions} />
-                </div>
-                {/* Game Scene */}
-                <div className="flex-1">
-                  <LevelScene />
-                </div>
+              {/* Code Editor - center */}
+              <div className="flex-1">
+                <CodeEditor />
+              </div>
+            </div>
+          }
+          right={
+            <div className="flex h-full flex-col">
+              {/* Instructions - top, scrollable */}
+              <div className="max-h-[60%] overflow-auto border-b border-[var(--color-forest-light)]/30">
+                <Instructions content={currentLevel.instructions} />
+              </div>
+              {/* Game Scene with progress */}
+              <div className="flex-1">
+                <LevelScene />
               </div>
             </div>
           }

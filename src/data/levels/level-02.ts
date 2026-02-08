@@ -12,13 +12,9 @@ import type {
 } from "../../engine/types";
 
 const instructions = `
-## 🐿️ Level 2: The Sorting Office
-
 ### Identifying the Leaf-Mail
 
 A mysterious gust of wind has blown letters from all over the forest into Scribe's library. Before Scribe can reply, he needs to know what language they are written in! Your first task is to initialize the **Language Detector** and identify the language of the provided text.
-
----
 
 ### Challenge Instructions
 
@@ -26,11 +22,7 @@ To help Scribe, you must use the \`LanguageDetector\` API. Follow these steps:
 
 1. **Check Availability:** First, verify if the model is available using \`LanguageDetector.availability()\`.
 2. **Create the Detector:** Use the \`LanguageDetector.create()\` method to initialize the detector.
-3. **Detect the Language:** Call the \`detect()\` method on the \`leafMail\` string.
-
-> **Note:** Since these are built-in APIs, they are asynchronous. Don't forget to use \`await\`!
-
----
+3. **Detect the Language:** Call the \`detect()\` method on the \`leafMail\` string. Don't forget to \`await\` for the result!
 
 ### Expected Output
 

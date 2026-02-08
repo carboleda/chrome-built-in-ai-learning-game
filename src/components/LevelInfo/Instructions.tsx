@@ -12,17 +12,17 @@ interface InstructionsProps {
 
 export function Instructions({ content }: InstructionsProps) {
   return (
-    <div className="prose prose-invert max-w-none overflow-auto p-4">
+    <div className="prose prose-invert max-w-none overflow-auto bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] p-2 text-sm">
       <Markdown
         components={{
           // Custom styling for markdown elements
           h2: ({ children }) => (
-            <h2 className="mb-4 mt-6 text-xl font-bold text-[var(--color-leaf-gold)]">
+            <h2 className="mb-3 mt-4 text-lg font-bold text-[var(--color-leaf-gold)]">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="mb-3 mt-4 text-lg font-semibold text-white">
+            <h3 className="mb-2 mt-3 text-base font-semibold text-white">
               {children}
             </h3>
           ),
