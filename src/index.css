@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+:root {
+  --color-forest-dark: #1a2f1a;
+  --color-forest-medium: #2d4a2d;
+  --color-forest-light: #4a7c4a;
+  --color-acorn: #8b6914;
+  --color-leaf-gold: #d4a843;
+  --color-bark: #5c4033;
+}
+
+body {
+  @apply m-0 min-h-screen bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] text-gray-100;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#root {
+  @apply min-h-screen w-full;
+}
+
