@@ -16,14 +16,14 @@ interface SplitPaneProps {
 
 export function SplitPane({ left, right }: SplitPaneProps) {
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex h-full w-full">
       {/* Left Panel - Code Editor */}
-      <div className="flex w-1/2 flex-col border-r border-[var(--color-forest-light)]/30 bg-[#1e1e1e]">
+      <div className="flex w-1/2 flex-col overflow-hidden border-r border-[var(--color-forest-light)]/30 bg-[#1e1e1e]">
         {left}
       </div>
 
       {/* Right Panel - Game View */}
-      <div className="flex w-1/2 flex-col overflow-auto bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)]">
+      <div className="flex w-1/2 flex-col overflow-hidden bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)]">
         {right}
       </div>
     </div>

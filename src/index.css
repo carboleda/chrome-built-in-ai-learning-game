@@ -9,12 +9,16 @@
   --color-bark: #5c4033;
 }
 
+html {
+  @apply h-full overflow-hidden;
+}
+
 body {
-  @apply m-0 min-h-screen bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] text-gray-100;
+  @apply m-0 h-full overflow-hidden bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] text-gray-100;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 #root {
-  @apply min-h-screen w-full;
+  @apply h-full w-full overflow-hidden;
 }
 

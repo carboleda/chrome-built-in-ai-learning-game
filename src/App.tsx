@@ -32,12 +32,12 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col overflow-hidden">
       <ApiWarning />
-      <div className="flex-1">
+      <div className="flex-1 overflow-hidden">
         <SplitPane
           left={
-            <div className="flex h-full flex-col">
+            <div className="flex h-full flex-col overflow-hidden">
               {/* Game Title Header */}
               <div className="flex items-top justify-between border-b border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] px-4 py-3">
                 <h1 className="text-2xl font-bold text-[var(--color-leaf-gold)]">
@@ -47,19 +47,19 @@ function App() {
               </div>
               <LevelHeader level={currentLevel} />
               {/* Code Editor - center */}
-              <div className="flex-1">
+              <div className="min-h-0 flex-1">
                 <CodeEditor />
               </div>
             </div>
           }
           right={
-            <div className="flex h-full flex-col">
+            <div className="flex h-full flex-col overflow-hidden">
               {/* Instructions - top, scrollable */}
               <div className="max-h-[60%] overflow-auto border-b border-[var(--color-forest-light)]/30">
                 <Instructions content={currentLevel.instructions} />
               </div>
               {/* Game Scene with progress */}
-              <div className="flex-1">
+              <div className="min-h-0 flex-1 overflow-auto">
                 <LevelScene />
               </div>
             </div>
