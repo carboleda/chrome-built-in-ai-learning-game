@@ -1,8 +1,8 @@
 /**
- * Level 1: The Sorting Office - Language Detection
+ * Level 2: The Cold Start - Checking Availability
  *
- * Introduces the LanguageDetector API to identify the language
- * of incoming "Leaf-Mail" messages.
+ * Teaches the importance of checking API availability before
+ * creating the LanguageDetector instance.
  */
 
 import type {
@@ -12,96 +12,85 @@ import type {
 } from "../../engine/types";
 
 const instructions = `
-## 🐿️ Level 1: The Sorting Office
+## 🐿️ Level 1: The Cold Start
 
-### Identifying the Leaf-Mail
+### Checking the Acorn Reserves
 
-A mysterious gust of wind has blown letters from all over the forest into Scribe's library. Before Scribe can reply, he needs to know what language they are written in! Your first task is to initialize the **Language Detector** and identify the language of the provided text.
+Scribe is ready to work, but sometimes the "Forest Brain" needs to download new data before it can detect languages. If you try to use the detector before it's ready, Scribe will get a headache!
 
 ---
 
 ### Challenge Instructions
 
-To help Scribe, you must use the \`LanguageDetector\` API. Follow these steps:
+Before creating the detector, you must check the **availability**.
 
-1. **Check Availability:** First, verify if the model is available using \`LanguageDetector.availability()\`.
-2. **Create the Detector:** Use the \`LanguageDetector.create()\` method to initialize the detector.
-3. **Detect the Language:** Call the \`detect()\` method on the \`leafMail\` string.
+1. Call \`LanguageDetector.availability()\`.
+2. Await the result of the availability function.
+3. Only if it returns \`'available'\`, create the detector.
 
-> **Note:** Since these are built-in APIs, they are asynchronous. Don't forget to use \`await\`!
+> **Note:** Always check availability before creating AI instances to ensure a smooth user experience!
 
 ---
 
 ### Expected Output
 
-The \`results\` variable should contain an array of detected languages with confidence scores, like:
-\`\`\`javascript
-[{ detectedLanguage: 'fr', confidence: 0.95 }]
-\`\`\`
+If the API is available, the \`detector\` variable should be a valid LanguageDetector instance that you can use to detect languages.
 `;
 
-const starterCode = `// The mysterious Leaf-Mail that arrived today
-const leafMail = "Bonjour Scribe! Comment vas-tu?";
+const starterCode = `// Check if Scribe is ready to think!
+const availability = await LanguageDetector.______________;
+let detector;
 
-// 1. Create the language detector
-const detector = await LanguageDetector.create();
-
-// 2. Detect the language of leafMail
-const results = // Your code here
+if (availability === 'available') {
+  // Create the detector here
+  detector = await __________________________;
+}
 `;
 
 /**
- * Validation function for Level 1
- * Checks progressive completion of the LanguageDetector challenge
+ * Validation function for Level 2
+ * Checks that user properly checks availability before creating detector
  */
 async function validate(
   userCode: string,
   executionResult: ExecutionResult,
 ): Promise<ValidationResult> {
   let progress = 0;
-  const total = 3;
+  const total = 2;
   const messages: string[] = [];
 
   const { capturedInstances } = executionResult;
   const detector = capturedInstances.detector;
-  const results = capturedInstances.results;
 
-  // Step 1: Check if they checked for availability or created the detector
+  // Step 1: Check if they called availability and check for 'available'
   if (
-    userCode.includes("LanguageDetector.availability") ||
-    userCode.includes("LanguageDetector.create")
+    userCode.includes("LanguageDetector.availability()") &&
+    (userCode.includes("=== 'available'") ||
+      userCode.includes('=== "available"') ||
+      userCode.includes("== 'available'") ||
+      userCode.includes('== "available"'))
   ) {
     progress++;
-    messages.push("✓ LanguageDetector API usage detected");
+    messages.push("✓ Availability check implemented correctly");
   } else {
-    messages.push("○ Use LanguageDetector.create() to create a detector");
+    messages.push(
+      "○ Check availability with LanguageDetector.availability() and compare to 'available'",
+    );
   }
 
-  // Step 2: Check if the detector instance was successfully created
+  // Step 2: Check if the detector was successfully instantiated inside the conditional
   if (
     detector &&
     typeof (detector as { detect?: unknown }).detect === "function"
   ) {
     progress++;
-    messages.push("✓ Detector instance created successfully");
+    messages.push(
+      "✓ Detector created successfully inside the availability check",
+    );
   } else {
     messages.push(
-      "○ The detector variable should be a LanguageDetector instance",
+      "○ Create the detector using LanguageDetector.create() when available",
     );
-  }
-
-  // Step 3: Check if the final result is an array with language detection objects
-  if (
-    Array.isArray(results) &&
-    results.length > 0 &&
-    typeof results[0] === "object" &&
-    results[0] !== null &&
-    "detectedLanguage" in results[0]
-  ) {
-    progress++;
-    messages.push("✓ Language detected successfully!");
-  } else {
-    messages.push("○ Call detector.detect(leafMail) to get the results");
   }
 
   return {
@@ -114,14 +103,11 @@ async function validate(
 
 export const level01: Level = {
   id: 1,
-  title: "The Sorting Office",
+  title: "The Cold Start",
   api: "LanguageDetector",
   instructions,
   starterCode,
-  context: {
-    // The leafMail is already in the starter code, but we provide it in context
-    // so it's available even if the user modifies/deletes the variable
-  },
-  captureVariables: ["detector", "results"],
+  context: {},
+  captureVariables: ["detector", "availability"],
   validate,
 };

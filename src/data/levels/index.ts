@@ -10,14 +10,15 @@
 
 import type { Level } from "../../engine/types";
 import { level01 } from "./level-01";
+import { level02 } from "./level-02";
 
 /**
  * All available levels in order
  */
 export const levels: Level[] = [
   level01,
+  level02,
   // Add new levels here:
-  // level02,
   // level03,
   // ...
 ];
