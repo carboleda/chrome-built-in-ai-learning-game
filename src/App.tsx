@@ -37,6 +37,12 @@ function App() {
         <SplitPane
           left={
             <div className="flex h-full flex-col">
+              {/* Game Title Header */}
+              <div className="border-b border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] px-4 py-3">
+                <h1 className="text-2xl font-bold text-[var(--color-leaf-gold)]">
+                  🐿️ Scribe's On-Device AI Adventure
+                </h1>
+              </div>
               <LevelHeader level={currentLevel} />
               {/* Code Editor - center */}
               <div className="flex-1">
