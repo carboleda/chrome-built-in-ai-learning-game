@@ -12,6 +12,7 @@ import { LevelScene } from "./components/GameView/LevelScene";
 import { LevelHeader } from "./components/LevelInfo/LevelHeader";
 import { Instructions } from "./components/LevelInfo/Instructions";
 import { ApiWarning } from "./components/ApiWarning/ApiWarning";
+import { LevelNavigator } from "./components/LevelNavigator/LevelNavigator";
 
 function App() {
   const { currentLevel, initGame } = useGameStore();
@@ -38,10 +39,11 @@ function App() {
           left={
             <div className="flex h-full flex-col">
               {/* Game Title Header */}
-              <div className="border-b border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] px-4 py-3">
+              <div className="flex items-top justify-between border-b border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] px-4 py-3">
                 <h1 className="text-2xl font-bold text-[var(--color-leaf-gold)]">
                   🐿️ Scribe's On-Device AI Adventure
                 </h1>
+                <LevelNavigator />
               </div>
               <LevelHeader level={currentLevel} />
               {/* Code Editor - center */}

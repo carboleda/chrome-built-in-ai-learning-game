@@ -30,6 +30,8 @@ interface GameState {
   executionError: string | null;
   /** IDs of completed levels */
   completedLevels: number[];
+  /** Solutions for completed levels (levelId -> code) */
+  levelSolutions: Record<number, string>;
 }
 
 /**
@@ -67,6 +69,7 @@ const initialState: GameState = {
   isExecuting: false,
   executionError: null,
   completedLevels: [],
+  levelSolutions: {},
 };
 
 /**
@@ -97,12 +100,18 @@ export const useGameStore = create<GameStore>()(
       },
 
       setLevel: (levelId: number) => {
+        const { completedLevels, levelSolutions } = get();
         const level = getLevelById(levelId);
         if (level) {
+          // Load saved solution if level was completed, otherwise use starter code
+          const savedSolution = levelSolutions[levelId];
+          const isCompleted = completedLevels.includes(levelId);
           set({
             currentLevel: level,
-            userCode: level.starterCode,
-            validationResult: null,
+            userCode: savedSolution ?? level.starterCode,
+            validationResult: isCompleted
+              ? { progress: 1, total: 1, complete: true }
+              : null,
             executionError: null,
           });
         }
@@ -133,12 +142,19 @@ export const useGameStore = create<GameStore>()(
             executionResult,
           );
 
-          // If completed, add to completed levels
+          // If completed, add to completed levels and save/update solution
           if (validationResult.complete) {
-            const { completedLevels } = get();
+            const { completedLevels, levelSolutions } = get();
+            const updates: Partial<GameState> = {
+              levelSolutions: {
+                ...levelSolutions,
+                [currentLevel.id]: userCode,
+              },
+            };
             if (!completedLevels.includes(currentLevel.id)) {
-              set({ completedLevels: [...completedLevels, currentLevel.id] });
+              updates.completedLevels = [...completedLevels, currentLevel.id];
             }
+            set(updates);
           }
 
           set({
@@ -189,8 +205,11 @@ export const useGameStore = create<GameStore>()(
     }),
     {
       name: STORAGE_KEY,
-      // Only persist completedLevels
-      partialize: (state) => ({ completedLevels: state.completedLevels }),
+      // Persist completedLevels and solutions
+      partialize: (state) => ({
+        completedLevels: state.completedLevels,
+        levelSolutions: state.levelSolutions,
+      }),
     },
   ),
 );
