@@ -222,13 +222,7 @@ export const useGameStore = create<GameStore>()(
 
         const next = getNextLevel(currentLevel.id);
         if (next) {
-          set({
-            currentLevel: next,
-            currentLevelId: next.id,
-            currentLevelCode: next.starterCode,
-            validationResult: null,
-            executionError: null,
-          });
+          get().setLevel(next.id);
         }
       },
 

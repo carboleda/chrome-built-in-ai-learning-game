@@ -20,6 +20,8 @@ Here is the full 24-level roadmap for **Babel’s Signal Routing**, grouped by t
 
 ## 🛰️ Babel’s Signal-Bot: The Terminal Logs
 
+Level instructions have to be concise and easy to understand for people who haven't use the Chrome API in the past. For the story use a language the clear and different from the API's technical aspects so that player don't get confused.
+
 ### Module 1: The Sensor Array (LanguageDetector)
 
 _Babel needs to identify incoming data packets before they can be routed._

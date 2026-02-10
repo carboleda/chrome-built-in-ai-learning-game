@@ -53,7 +53,7 @@ export function BabelCharacter({ mood }: BabelCharacterProps) {
       {/* Babel Robot Display */}
       <div className="relative">
         <motion.div
-          className="flex h-32 w-32 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--color-cyber-purple)] to-[var(--color-terminal-light)] text-6xl shadow-lg shadow-[var(--color-signal-blue)]/20 ring-2 ring-[var(--color-signal-blue)]"
+          className="flex h-32 w-32 items-center justify-center rounded-lg bg-linear-to-br from-(--color-cyber-purple) to-(--color-terminal-light) text-6xl shadow-lg shadow-(--color-signal-blue)/20 ring-2 ring-(--color-signal-blue)"
           animate={{
             scale: mood === "celebrating" ? [1, 1.1, 1] : 1,
             boxShadow:
@@ -75,7 +75,7 @@ export function BabelCharacter({ mood }: BabelCharacterProps) {
 
         {/* Status Badge */}
         <motion.div
-          className="absolute -right-4 -top-2 rounded-full bg-[var(--color-neon-green)] px-3 py-1 text-sm font-bold text-[var(--color-terminal-dark)]"
+          className="absolute -right-4 -top-2 rounded-full bg-(--color-neon-green) px-3 py-1 text-sm font-bold text-(--color-terminal-dark)"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           key={mood}

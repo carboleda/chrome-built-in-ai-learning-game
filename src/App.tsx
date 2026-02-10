@@ -39,28 +39,28 @@ function App() {
           left={
             <div className="flex h-full flex-col overflow-hidden">
               {/* Game Title Header */}
-              <div className="flex items-top justify-between border-b border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-dark)] px-4 py-3">
-                <h1 className="text-2xl font-bold text-[var(--color-signal-blue)]">
+              <div className="flex items-top justify-between border-b border-(--color-terminal-light)/30 bg-(--color-terminal-dark) px-4 py-3">
+                <h1 className="text-2xl font-bold text-white">
                   🛰️ Babel's Signal Routing
                 </h1>
                 <LevelNavigator />
               </div>
               <LevelHeader level={currentLevel} />
               {/* Code Editor - center */}
-              <div className="min-h-0 flex-1">
+              <div className="min-h-0 flex-5">
                 <CodeEditor />
+              </div>
+              {/* Game Scene - bottom */}
+              <div className="flex-4 border-t border-(--color-terminal-light)/30 overflow-auto">
+                <LevelScene />
               </div>
             </div>
           }
           right={
             <div className="flex h-full flex-col overflow-hidden">
-              {/* Instructions - top, scrollable */}
-              <div className="max-h-[60%] overflow-auto border-b border-[var(--color-terminal-light)]/30">
-                <Instructions content={currentLevel.instructions} />
-              </div>
-              {/* Game Scene with progress */}
+              {/* Instructions - full height, scrollable */}
               <div className="min-h-0 flex-1 overflow-auto">
-                <LevelScene />
+                <Instructions content={currentLevel.instructions} />
               </div>
             </div>
           }

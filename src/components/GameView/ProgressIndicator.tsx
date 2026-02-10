@@ -25,19 +25,19 @@ export function ProgressIndicator({
     <div className="w-full">
       {/* Progress Label */}
       <div className="mb-2 flex items-center justify-between text-sm">
-        <span className="text-[var(--color-signal-blue)]">Module Progress</span>
+        <span className="text-[--color-signal-blue]">Module Progress</span>
         <span className="font-mono text-white">
           {progress} / {total} steps
         </span>
       </div>
 
       {/* Progress Bar */}
-      <div className="h-4 overflow-hidden rounded-full bg-[var(--color-circuit-gray)]/50 ring-1 ring-[var(--color-signal-blue)]/30">
+      <div className="h-4 overflow-hidden rounded-full bg-[--color-circuit-gray]/50 ring-1 ring-[--color-signal-blue]/30">
         <motion.div
           className={`h-full rounded-full ${
             isComplete
-              ? "bg-gradient-to-r from-[var(--color-neon-green)] to-emerald-400"
-              : "bg-gradient-to-r from-[var(--color-cyber-purple)] to-[var(--color-signal-blue)]"
+              ? "bg-linear-to-r from-[--color-neon-green] to-emerald-400"
+              : "bg-linear-to-r from-[--color-cyber-purple] to-[--color-signal-blue]"
           }`}
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
@@ -50,7 +50,7 @@ export function ProgressIndicator({
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-3 text-center text-lg font-bold text-[var(--color-neon-green)]"
+          className="mt-3 text-center text-lg font-bold text-[--color-neon-green]"
         >
           ✨ Module Complete!
         </motion.div>

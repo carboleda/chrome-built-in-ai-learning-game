@@ -39,7 +39,7 @@ const dataPacket = "Bonjour Terminal! Statut du syst\u00e8me?";
 const detector = await LanguageDetector.create();
 
 // 2. Analyze the language of the data packet
-const results = // Your code here
+const results = ______________
 `;
 const totalSteps = 3;
 
