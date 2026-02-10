@@ -14,14 +14,19 @@ import {
   levels,
 } from "../data/levels/index";
 
+// Debounce timer for autosaving user's code per-level
+let saveTimer: ReturnType<typeof setTimeout> | null = null;
+
 /**
  * Game store state interface
  */
 interface GameState {
   /** Current level being played */
   currentLevel: Level | null;
-  /** User's code in the editor */
-  userCode: string;
+  /** ID of the current level (persistable) */
+  currentLevelId: number | null;
+  /** Current code for the active level (source of truth) */
+  currentLevelCode: string;
   /** Current validation result */
   validationResult: ValidationResult | null;
   /** Whether code is currently executing */
@@ -42,6 +47,8 @@ interface GameActions {
   initGame: () => void;
   /** Set the current level by ID */
   setLevel: (levelId: number) => void;
+  /** Return current code for the active level */
+  getCurrentLevelCode: () => string;
   /** Update the user's code */
   setCode: (code: string) => void;
   /** Execute the user's code and validate */
@@ -64,7 +71,8 @@ const STORAGE_KEY = "babels-signal-routing";
  */
 const initialState: GameState = {
   currentLevel: null,
-  userCode: "",
+  currentLevelId: null,
+  currentLevelCode: "",
   validationResult: null,
   isExecuting: false,
   executionError: null,
@@ -81,19 +89,32 @@ export const useGameStore = create<GameStore>()(
       ...initialState,
 
       initGame: () => {
-        const { completedLevels } = get();
+        const { completedLevels, currentLevelId } = get();
+
+        // Prefer restoring the last viewed level if available
+        const persistedLevel = currentLevelId
+          ? getLevelById(currentLevelId)
+          : null;
 
         // Find the first uncompleted level, or fallback to first level
         const firstUncompletedLevel = levels.find(
           (level) => !completedLevels.includes(level.id),
         );
-        const targetLevel = firstUncompletedLevel ?? getFirstLevel();
+
+        const targetLevel =
+          persistedLevel ?? firstUncompletedLevel ?? getFirstLevel();
 
         if (targetLevel) {
+          // If a saved solution exists for the restored level, load it
+          const saved = get().levelSolutions[targetLevel.id];
+          const isCompleted = completedLevels.includes(targetLevel.id);
           set({
             currentLevel: targetLevel,
-            userCode: targetLevel.starterCode,
-            validationResult: null,
+            currentLevelId: targetLevel.id,
+            currentLevelCode: saved ?? targetLevel.starterCode,
+            validationResult: isCompleted
+              ? { progress: targetLevel.totalSteps, complete: true }
+              : null,
             executionError: null,
           });
         }
@@ -108,7 +129,8 @@ export const useGameStore = create<GameStore>()(
           const isCompleted = completedLevels.includes(levelId);
           set({
             currentLevel: level,
-            userCode: savedSolution ?? level.starterCode,
+            currentLevelId: level.id,
+            currentLevelCode: savedSolution ?? level.starterCode,
             validationResult: isCompleted
               ? { progress: level.totalSteps, complete: true }
               : null,
@@ -118,11 +140,33 @@ export const useGameStore = create<GameStore>()(
       },
 
       setCode: (code: string) => {
-        set({ userCode: code, executionError: null });
+        // Update current level code immediately
+        set({ currentLevelCode: code, executionError: null });
+
+        // Debounce persisting the current code into levelSolutions to avoid
+        // writing on every keystroke. Uses the current level id as the key.
+        if (saveTimer) clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+          const { currentLevelId, levelSolutions } = get();
+          if (currentLevelId) {
+            // Persist the latest editor contents for the current level
+            set({
+              levelSolutions: {
+                ...levelSolutions,
+                [currentLevelId]: get().currentLevelCode,
+              },
+            });
+          }
+          saveTimer = null;
+        }, 700);
+      },
+
+      getCurrentLevelCode: () => {
+        return get().currentLevelCode;
       },
 
       runCode: async () => {
-        const { currentLevel, userCode } = get();
+        const { currentLevel, currentLevelCode } = get();
         if (!currentLevel || get().isExecuting) return;
 
         set({ isExecuting: true, executionError: null });
@@ -130,7 +174,7 @@ export const useGameStore = create<GameStore>()(
         try {
           // Execute user's code
           const executionResult: ExecutionResult = await executeUserCode(
-            userCode,
+            currentLevelCode,
             currentLevel.context,
             currentLevel.captureVariables,
           );
@@ -138,7 +182,7 @@ export const useGameStore = create<GameStore>()(
           // Validate the result
           const validationResult = await validateLevel(
             currentLevel,
-            userCode,
+            currentLevelCode,
             executionResult,
           );
 
@@ -148,7 +192,7 @@ export const useGameStore = create<GameStore>()(
             const updates: Partial<GameState> = {
               levelSolutions: {
                 ...levelSolutions,
-                [currentLevel.id]: userCode,
+                [currentLevel.id]: currentLevelCode,
               },
             };
             if (!completedLevels.includes(currentLevel.id)) {
@@ -180,7 +224,8 @@ export const useGameStore = create<GameStore>()(
         if (next) {
           set({
             currentLevel: next,
-            userCode: next.starterCode,
+            currentLevelId: next.id,
+            currentLevelCode: next.starterCode,
             validationResult: null,
             executionError: null,
           });
@@ -191,7 +236,7 @@ export const useGameStore = create<GameStore>()(
         const { currentLevel } = get();
         if (currentLevel) {
           set({
-            userCode: currentLevel.starterCode,
+            currentLevelCode: currentLevel.starterCode,
             validationResult: null,
             executionError: null,
             completedLevels: get().completedLevels.filter(
@@ -213,10 +258,11 @@ export const useGameStore = create<GameStore>()(
     }),
     {
       name: STORAGE_KEY,
-      // Persist completedLevels and solutions
+      // Persist completedLevels, solutions, and last viewed level id
       partialize: (state) => ({
         completedLevels: state.completedLevels,
         levelSolutions: state.levelSolutions,
+        currentLevelId: state.currentLevelId,
       }),
     },
   ),

@@ -10,7 +10,7 @@ import { isLastLevel } from "../../data/levels";
 
 export function CodeEditor() {
   const {
-    userCode,
+    currentLevelCode,
     setCode,
     runCode,
     resetLevel,
@@ -37,7 +37,7 @@ export function CodeEditor() {
           height="100%"
           defaultLanguage="javascript"
           theme="vs-dark"
-          value={userCode}
+          value={currentLevelCode}
           onChange={handleEditorChange}
           options={{
             minimap: { enabled: false },
