@@ -60,31 +60,31 @@ export function CodeEditor() {
       )}
 
       {/* Action Buttons */}
-      <div className="flex gap-3 border-t border-[var(--color-forest-light)]/30 bg-[#252526] px-4 py-3">
+      <div className="flex gap-3 border-t border-[var(--color-terminal-light)]/30 bg-[#252526] px-4 py-3">
         <button
           onClick={handleRunCode}
           disabled={isExecuting}
-          className="rounded-lg bg-[var(--color-forest-light)] px-6 py-2 font-semibold text-white transition-all hover:bg-[var(--color-leaf-gold)] hover:text-[var(--color-forest-dark)] disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-[var(--color-terminal-light)] px-6 py-2 font-semibold text-white transition-all hover:bg-[var(--color-signal-blue)] hover:text-[var(--color-terminal-dark)] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isExecuting ? "Running..." : "▶ Run Code"}
-        </button>
-        <button
-          onClick={resetLevel}
-          disabled={isExecuting}
-          className="rounded-lg border border-gray-600 px-4 py-2 text-gray-400 transition-colors hover:border-gray-400 hover:text-gray-200 disabled:opacity-50"
-        >
-          Reset
         </button>
         {validationResult?.complete &&
           currentLevel &&
           !isLastLevel(currentLevel.id) && (
             <button
               onClick={nextLevel}
-              className="rounded-lg bg-[var(--color-leaf-gold)] px-6 py-2 font-semibold text-[var(--color-forest-dark)] transition-all hover:scale-105"
+              className="rounded-lg bg-[var(--color-signal-blue)] px-6 py-2 font-semibold text-[var(--color-terminal-dark)] transition-all hover:scale-105"
             >
               Next Level →
             </button>
           )}
+        <button
+          onClick={resetLevel}
+          disabled={isExecuting}
+          className="ml-auto rounded-lg border border-gray-600 px-4 py-2 text-gray-400 transition-colors hover:border-gray-400 hover:text-gray-200 disabled:opacity-50"
+        >
+          Reset
+        </button>
       </div>
     </div>
   );

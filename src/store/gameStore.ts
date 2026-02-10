@@ -57,7 +57,7 @@ interface GameActions {
 type GameStore = GameState & GameActions;
 
 /** Storage key for persisted state */
-const STORAGE_KEY = "scribes-ai-adventure";
+const STORAGE_KEY = "babels-signal-routing";
 
 /**
  * Initial state
@@ -110,7 +110,7 @@ export const useGameStore = create<GameStore>()(
             currentLevel: level,
             userCode: savedSolution ?? level.starterCode,
             validationResult: isCompleted
-              ? { progress: 1, total: 1, complete: true }
+              ? { progress: level.totalSteps, complete: true }
               : null,
             executionError: null,
           });
@@ -194,6 +194,14 @@ export const useGameStore = create<GameStore>()(
             userCode: currentLevel.starterCode,
             validationResult: null,
             executionError: null,
+            completedLevels: get().completedLevels.filter(
+              (id) => id !== currentLevel.id,
+            ),
+            levelSolutions: Object.fromEntries(
+              Object.entries(get().levelSolutions).filter(
+                ([id]) => Number(id) !== currentLevel.id,
+              ),
+            ),
           });
         }
       },

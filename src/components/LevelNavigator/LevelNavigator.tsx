@@ -42,7 +42,7 @@ export function LevelNavigator() {
         {/* Dropdown trigger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 rounded-lg border border-[var(--color-forest-light)]/30 bg-[var(--color-forest-medium)] px-3 py-1.5 text-sm font-medium text-white transition-all hover:border-[var(--color-leaf-gold)] focus:border-[var(--color-leaf-gold)] focus:outline-none"
+          className="flex items-center gap-2 rounded-lg border border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-medium)] px-3 py-1.5 text-sm font-medium text-white transition-all hover:border-[var(--color-signal-blue)] focus:border-[var(--color-signal-blue)] focus:outline-none"
         >
           <span className="flex items-center gap-2">
             {completedLevels.includes(currentLevel?.id ?? 0) ? (
@@ -75,7 +75,7 @@ export function LevelNavigator() {
 
         {/* Dropdown menu */}
         {isOpen && (
-          <div className="absolute right-0 top-full z-50 mt-1 max-h-64 w-72 overflow-auto rounded-lg border border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] py-1 shadow-xl">
+          <div className="absolute right-0 top-full z-50 mt-1 max-h-64 w-72 overflow-auto rounded-lg border border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-dark)] py-1 shadow-xl">
             {levels.map((level) => {
               const isCompleted = completedLevels.includes(level.id);
               const isCurrent = currentLevel?.id === level.id;
@@ -86,8 +86,8 @@ export function LevelNavigator() {
                   onClick={() => handleSelect(level.id)}
                   className={`flex w-full items-center gap-3 px-3 py-2 text-left text-sm transition-colors ${
                     isCurrent
-                      ? "bg-[var(--color-forest-medium)] text-[var(--color-leaf-gold)]"
-                      : "text-gray-300 hover:bg-[var(--color-forest-medium)]/50"
+                      ? "bg-[var(--color-terminal-medium)] text-[var(--color-signal-blue)]"
+                      : "text-gray-300 hover:bg-[var(--color-terminal-medium)]/50"
                   }`}
                 >
                   {/* Status indicator */}

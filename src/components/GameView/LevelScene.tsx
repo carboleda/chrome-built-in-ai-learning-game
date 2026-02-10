@@ -1,18 +1,18 @@
 /**
  * LevelScene Component
  *
- * Main game visualization area containing Scribe and progress indicators.
+ * Main game visualization area containing Babel and progress indicators.
  */
 
 import { useGameStore } from "../../store/gameStore";
-import { ScribeCharacter } from "./ScribeCharacter";
+import { BabelCharacter } from "./BabelCharacter";
 import { ProgressIndicator } from "./ProgressIndicator";
 import { isLastLevel } from "../../data/levels";
 
 export function LevelScene() {
   const { validationResult, isExecuting, currentLevel } = useGameStore();
 
-  // Determine Scribe's mood based on state
+  // Determine Babel's mood based on state
   const getMood = (): "idle" | "thinking" | "happy" | "celebrating" => {
     if (isExecuting) return "thinking";
     if (validationResult?.complete) return "celebrating";
@@ -25,19 +25,22 @@ export function LevelScene() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center p-8">
-      {/* Scribe Character */}
+      {/* Babel Character */}
       <div className="mb-4">
-        <ScribeCharacter mood={getMood()} />
+        <BabelCharacter mood={getMood()} />
       </div>
 
       {/* Progress Indicator */}
       <div className="w-full max-w-md">
-        <ProgressIndicator validation={validationResult} />
+        <ProgressIndicator
+          validation={validationResult}
+          totalSteps={currentLevel?.totalSteps ?? 1}
+        />
       </div>
 
       {/* Validation Messages */}
       {validationResult?.message && (
-        <div className="mt-6 w-full max-w-md rounded-lg bg-[var(--color-forest-dark)]/50 p-4">
+        <div className="mt-6 w-full max-w-md rounded-lg bg-[var(--color-terminal-dark)]/50 p-4 ring-1 ring-[var(--color-signal-blue)]/30">
           <pre className="whitespace-pre-wrap font-mono text-sm text-gray-300">
             {validationResult.message}
           </pre>
@@ -47,8 +50,8 @@ export function LevelScene() {
       {/* Victory Message */}
       {isComplete && !hasNextLevel && (
         <div className="mt-6 text-center">
-          <p className="text-xl font-bold text-[var(--color-leaf-gold)]">
-            🏆 Congratulations! You've completed all available levels!
+          <p className="text-xl font-bold text-[var(--color-neon-green)]">
+            🏆 System Complete! All modules optimized!
           </p>
         </div>
       )}

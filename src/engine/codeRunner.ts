@@ -64,7 +64,7 @@ function buildExecutableCode(
  * ```ts
  * const result = await executeUserCode(
  *   'const detector = await LanguageDetector.create();',
- *   { leafMail: 'Bonjour!' },
+ *   { dataPacket: 'Bonjour!' },
  *   ['detector', 'results']
  * );
  * ```

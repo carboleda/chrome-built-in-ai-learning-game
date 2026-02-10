@@ -1,5 +1,5 @@
 /**
- * Scribe's AI Adventure
+ * Babel's Signal Routing
  *
  * Main application component that orchestrates the game.
  */
@@ -39,9 +39,9 @@ function App() {
           left={
             <div className="flex h-full flex-col overflow-hidden">
               {/* Game Title Header */}
-              <div className="flex items-top justify-between border-b border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] px-4 py-3">
-                <h1 className="text-2xl font-bold text-[var(--color-leaf-gold)]">
-                  🐿️ Scribe's On-Device AI Adventure
+              <div className="flex items-top justify-between border-b border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-dark)] px-4 py-3">
+                <h1 className="text-2xl font-bold text-[var(--color-signal-blue)]">
+                  🛰️ Babel's Signal Routing
                 </h1>
                 <LevelNavigator />
               </div>
@@ -55,7 +55,7 @@ function App() {
           right={
             <div className="flex h-full flex-col overflow-hidden">
               {/* Instructions - top, scrollable */}
-              <div className="max-h-[60%] overflow-auto border-b border-[var(--color-forest-light)]/30">
+              <div className="max-h-[60%] overflow-auto border-b border-[var(--color-terminal-light)]/30">
                 <Instructions content={currentLevel.instructions} />
               </div>
               {/* Game Scene with progress */}

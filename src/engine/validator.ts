@@ -12,7 +12,6 @@ import type { Level, ExecutionResult, ValidationResult } from "./types";
  */
 const FAILED_VALIDATION: ValidationResult = {
   progress: 0,
-  total: 1,
   complete: false,
   message: "Code execution failed. Check for errors.",
 };
@@ -57,6 +56,7 @@ export async function validateLevel(
 
 /**
  * Creates a validation result helper for level authors
+ * @deprecated Use direct object creation instead
  */
 export function createValidationResult(
   progress: number,
@@ -65,7 +65,6 @@ export function createValidationResult(
 ): ValidationResult {
   return {
     progress,
-    total,
     complete: progress >= total,
     message,
   };

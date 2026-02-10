@@ -1,5 +1,5 @@
 /**
- * Core type definitions for Scribe's AI Adventure
+ * Core type definitions for Babel's Signal Routing
  */
 
 /**
@@ -20,8 +20,6 @@ export type AIApiType =
 export interface ValidationResult {
   /** Number of completed steps */
   progress: number;
-  /** Total steps required */
-  total: number;
   /** Whether all steps are complete */
   complete: boolean;
   /** Optional message to display to user */
@@ -65,6 +63,8 @@ export interface Level {
   title: string;
   /** Which Chrome AI API this level teaches */
   api: AIApiType;
+  /** Total number of validation steps for this level */
+  totalSteps: number;
   /** Markdown instructions for the player */
   instructions: string;
   /** Initial code shown in the editor */

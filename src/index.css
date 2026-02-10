@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --color-forest-dark: #1a2f1a;
-  --color-forest-medium: #2d4a2d;
-  --color-forest-light: #4a7c4a;
-  --color-acorn: #8b6914;
-  --color-leaf-gold: #d4a843;
-  --color-bark: #5c4033;
+  --color-terminal-dark: #0a0e1a;
+  --color-terminal-medium: #1a1f35;
+  --color-terminal-light: #2a3f5f;
+  --color-signal-blue: #00d9ff;
+  --color-neon-green: #39ff14;
+  --color-cyber-purple: #8b5cf6;
+  --color-circuit-gray: #4a5568;
 }
 
 html {
@@ -14,8 +15,8 @@ html {
 }
 
 body {
-  @apply m-0 h-full overflow-hidden bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] text-gray-100;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  @apply m-0 h-full overflow-hidden bg-gradient-to-br from-[var(--color-terminal-dark)] to-[var(--color-terminal-medium)] text-gray-100;
+  font-family: 'Courier New', monospace, system-ui, sans-serif;
 }
 
 #root {

@@ -9,11 +9,15 @@ import type { ValidationResult } from "../../engine/types";
 
 interface ProgressIndicatorProps {
   validation: ValidationResult | null;
+  totalSteps: number;
 }
 
-export function ProgressIndicator({ validation }: ProgressIndicatorProps) {
+export function ProgressIndicator({
+  validation,
+  totalSteps,
+}: ProgressIndicatorProps) {
   const progress = validation?.progress ?? 0;
-  const total = validation?.total ?? 1;
+  const total = totalSteps;
   const percentage = (progress / total) * 100;
   const isComplete = validation?.complete ?? false;
 
@@ -21,19 +25,19 @@ export function ProgressIndicator({ validation }: ProgressIndicatorProps) {
     <div className="w-full">
       {/* Progress Label */}
       <div className="mb-2 flex items-center justify-between text-sm">
-        <span className="text-[var(--color-leaf-gold)]">Progress</span>
+        <span className="text-[var(--color-signal-blue)]">Module Progress</span>
         <span className="font-mono text-white">
           {progress} / {total} steps
         </span>
       </div>
 
       {/* Progress Bar */}
-      <div className="h-4 overflow-hidden rounded-full bg-[var(--color-bark)]/50">
+      <div className="h-4 overflow-hidden rounded-full bg-[var(--color-circuit-gray)]/50 ring-1 ring-[var(--color-signal-blue)]/30">
         <motion.div
           className={`h-full rounded-full ${
             isComplete
-              ? "bg-gradient-to-r from-green-500 to-emerald-400"
-              : "bg-gradient-to-r from-[var(--color-acorn)] to-[var(--color-leaf-gold)]"
+              ? "bg-gradient-to-r from-[var(--color-neon-green)] to-emerald-400"
+              : "bg-gradient-to-r from-[var(--color-cyber-purple)] to-[var(--color-signal-blue)]"
           }`}
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
@@ -46,9 +50,9 @@ export function ProgressIndicator({ validation }: ProgressIndicatorProps) {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-3 text-center text-lg font-bold text-green-400"
+          className="mt-3 text-center text-lg font-bold text-[var(--color-neon-green)]"
         >
-          🎉 Level Complete!
+          ✨ Module Complete!
         </motion.div>
       )}
     </div>

@@ -12,12 +12,12 @@ interface InstructionsProps {
 
 export function Instructions({ content }: InstructionsProps) {
   return (
-    <div className="prose prose-invert max-w-none overflow-auto bg-gradient-to-br from-[var(--color-forest-dark)] to-[var(--color-forest-medium)] px-2 pb-2 text-sm">
+    <div className="prose prose-invert max-w-none overflow-auto bg-gradient-to-br from-[var(--color-terminal-dark)] to-[var(--color-terminal-medium)] px-2 pb-2 text-sm">
       <Markdown
         components={{
           // Custom styling for markdown elements
           h2: ({ children }) => (
-            <h2 className="mb-3 mt-4 text-lg font-bold text-[var(--color-leaf-gold)]">
+            <h2 className="mb-3 mt-4 text-lg font-bold text-[var(--color-signal-blue)]">
               {children}
             </h2>
           ),
@@ -37,7 +37,7 @@ export function Instructions({ content }: InstructionsProps) {
               );
             }
             return (
-              <code className="rounded bg-[var(--color-bark)] px-1.5 py-0.5 text-sm text-[var(--color-leaf-gold)]">
+              <code className="rounded bg-[var(--color-circuit-gray)] px-1.5 py-0.5 text-sm text-[var(--color-signal-blue)]">
                 {children}
               </code>
             );
@@ -54,12 +54,12 @@ export function Instructions({ content }: InstructionsProps) {
             </ul>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-[var(--color-leaf-gold)] bg-[var(--color-bark)]/30 py-2 pl-4 italic text-gray-400">
+            <blockquote className="border-l-4 border-[var(--color-signal-blue)] bg-[var(--color-circuit-gray)]/30 py-2 pl-4 italic text-gray-400">
               {children}
             </blockquote>
           ),
           hr: () => (
-            <hr className="my-6 border-[var(--color-forest-light)]/30" />
+            <hr className="my-6 border-[var(--color-terminal-light)]/30" />
           ),
         }}
       >

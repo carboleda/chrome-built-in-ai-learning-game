@@ -1,8 +1,8 @@
 /**
- * Level 2: The Cold Start - Checking Availability
+ * Level 1: System Boot - Checking Availability
  *
  * Teaches the importance of checking API availability before
- * creating the LanguageDetector instance.
+ * activating Babel's Sensor Array module.
  */
 
 import type {
@@ -12,34 +12,35 @@ import type {
 } from "../../engine/types";
 
 const instructions = `
-### Checking the Acorn Reserves
+### Initializing the Sensor Array
 
-Scribe is ready to work, but sometimes the "Forest Brain" needs to download new data before it can detect languages. If you try to use the detector before it's ready, Scribe will get a headache!
+Babel is ready to analyze data packets, but first we need to verify that the **Sensor Array** module is loaded and ready. If you try to activate the detector before the system is ready, Babel will experience a critical error!
 
 ### Challenge Instructions
 
-Before creating the detector, you must check the **availability**.
+Before creating the detector, you must check the **availability** of the system module.
 
 1. Call \`LanguageDetector.availability()\`.
-2. Await the result of the availability function.
-3. Only if it returns \`'available'\`, create the detector.
+2. Await the result of the availability check.
+3. Only if it returns \`'available'\`, activate the detector module.
 
 > **Note:** Always check availability before creating AI instances to ensure a smooth user experience!
 
 ### Expected Output
 
-If the API is available, the \`detector\` variable should be a valid LanguageDetector instance that you can use to detect languages.
+If the Sensor Array is available, the \`detector\` variable should be a valid LanguageDetector instance that Babel can use to analyze incoming signals.
 `;
 
-const starterCode = `// Check if Scribe is ready to think!
+const starterCode = `// Check if Babel's Sensor Array is ready!
 const availability = await LanguageDetector.______________;
 let detector;
 
 if (availability === 'available') {
-  // Create the detector here
+  // Activate the Sensor Array module
   detector = await __________________________;
 }
 `;
+const totalSteps = 2;
 
 /**
  * Validation function for Level 2
@@ -50,7 +51,6 @@ async function validate(
   executionResult: ExecutionResult,
 ): Promise<ValidationResult> {
   let progress = 0;
-  const total = 2;
   const messages: string[] = [];
 
   const { capturedInstances } = executionResult;
@@ -89,16 +89,16 @@ async function validate(
 
   return {
     progress,
-    total,
-    complete: progress === total,
+    complete: progress === totalSteps,
     message: messages.join("\n"),
   };
 }
 
 export const level01: Level = {
   id: 1,
-  title: "The Cold Start",
+  title: "System Boot",
   api: "LanguageDetector",
+  totalSteps,
   instructions,
   starterCode,
   context: {},

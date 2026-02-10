@@ -1,8 +1,8 @@
 /**
- * Level 1: The Sorting Office - Language Detection
+ * Level 2: First Contact - Language Detection
  *
  * Introduces the LanguageDetector API to identify the language
- * of incoming "Leaf-Mail" messages.
+ * of incoming data packets in the Cloud Terminal.
  */
 
 import type {
@@ -12,17 +12,17 @@ import type {
 } from "../../engine/types";
 
 const instructions = `
-### Identifying the Leaf-Mail
+### Identifying the Signal Source
 
-A mysterious gust of wind has blown letters from all over the forest into Scribe's library. Before Scribe can reply, he needs to know what language they are written in! Your first task is to initialize the **Language Detector** and identify the language of the provided text.
+A stray data packet has arrived at Babel's Cloud Terminal from an unknown origin. Before Babel can route it to the correct destination node, he needs to identify what language it's encoded in! Your task is to initialize the **Sensor Array** and identify the language of the incoming signal.
 
 ### Challenge Instructions
 
-To help Scribe, you must use the \`LanguageDetector\` API. Follow these steps:
+To help Babel analyze the data packet, you must use the \`LanguageDetector\` API. Follow these steps:
 
-1. **Check Availability:** First, verify if the model is available using \`LanguageDetector.availability()\`.
-2. **Create the Detector:** Use the \`LanguageDetector.create()\` method to initialize the detector.
-3. **Detect the Language:** Call the \`detect()\` method on the \`leafMail\` string. Don't forget to \`await\` for the result!
+1. **Check Availability:** First, verify if the module is available using \`LanguageDetector.availability()\`.
+2. **Activate the Sensor:** Use the \`LanguageDetector.create()\` method to initialize the detector.
+3. **Analyze the Signal:** Call the \`detect()\` method on the \`dataPacket\` string. Don't forget to \`await\` for the result!
 
 ### Expected Output
 
@@ -32,15 +32,16 @@ The \`results\` variable should contain an array of detected languages with conf
 \`\`\`
 `;
 
-const starterCode = `// The mysterious Leaf-Mail that arrived today
-const leafMail = "Bonjour Scribe! Comment vas-tu?";
+const starterCode = `// Incoming data packet from unknown origin
+const dataPacket = "Bonjour Terminal! Statut du syst\u00e8me?";
 
-// 1. Create the language detector
+// 1. Activate the language detector
 const detector = await LanguageDetector.create();
 
-// 2. Detect the language of leafMail
+// 2. Analyze the language of the data packet
 const results = // Your code here
 `;
+const totalSteps = 3;
 
 /**
  * Validation function for Level 1
@@ -51,7 +52,6 @@ async function validate(
   executionResult: ExecutionResult,
 ): Promise<ValidationResult> {
   let progress = 0;
-  const total = 3;
   const messages: string[] = [];
 
   const { capturedInstances } = executionResult;
@@ -93,25 +93,25 @@ async function validate(
     progress++;
     messages.push("✓ Language detected successfully!");
   } else {
-    messages.push("○ Call detector.detect(leafMail) to get the results");
+    messages.push("○ Call detector.detect(dataPacket) to get the results");
   }
 
   return {
     progress,
-    total,
-    complete: progress === total,
+    complete: progress === totalSteps,
     message: messages.join("\n"),
   };
 }
 
 export const level02: Level = {
   id: 2,
-  title: "The Sorting Office",
+  title: "First Contact",
   api: "LanguageDetector",
+  totalSteps,
   instructions,
   starterCode,
   context: {
-    // The leafMail is already in the starter code, but we provide it in context
+    // The dataPacket is already in the starter code, but we provide it in context
     // so it's available even if the user modifies/deletes the variable
   },
   captureVariables: ["detector", "results"],

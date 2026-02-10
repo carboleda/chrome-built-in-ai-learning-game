@@ -12,14 +12,14 @@ interface LevelHeaderProps {
 
 export function LevelHeader({ level }: LevelHeaderProps) {
   return (
-    <div className="border-b border-[var(--color-forest-light)]/30 bg-[var(--color-forest-dark)] px-4 py-3">
+    <div className="border-b border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-dark)] px-4 py-3">
       <div className="flex items-center gap-3">
-        <span className="rounded-full bg-[var(--color-leaf-gold)] px-3 py-1 text-sm font-bold text-[var(--color-forest-dark)]">
+        <span className="rounded-full bg-[var(--color-signal-blue)] px-3 py-1 text-sm font-bold text-[var(--color-terminal-dark)]">
           Level {level.id}
         </span>
         <h2 className="text-md font-bold text-white">{level.title}</h2>
 
-        <p className="text-sm text-[var(--color-leaf-gold)] align-right ml-auto">
+        <p className="text-sm text-[var(--color-neon-green)] align-right ml-auto">
           API: {level.api}
         </p>
       </div>
