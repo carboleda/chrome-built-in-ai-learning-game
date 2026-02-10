@@ -2,15 +2,15 @@
 
 I want to create a game like https://flexboxfroggy.com/ to help developers to learn about the Chrome Built-In AI APIs.
 
-## 🐿️ Project Concept: Scribe’s AI Adventure
+## 🛰️ Project Concept: Babel's Signal Routing
 
-**Scribe** is the official librarian of the Great Oak Forest. Every day, animals from all over the world send messages via "Leaf-Mail." To keep the forest running smoothly, Scribe needs to use the browser’s built-in power to process, translate, and generate text instantly.
+**Babel** is a small, retro-futuristic robot floating in a digital "Cloud Terminal." Every moment, massive amounts of data flow through the internet, and Babel's job is to route, translate, and condense these data packets to keep the digital world running smoothly. Babel uses the browser's built-in AI power to process signals instantly.
 
 ### The Game Loop
 
-- **The Problem:** A messy pile of "Leaf-Mail" or a communication breakdown.
+- **The Problem:** Corrupted data packets, routing failures, or communication protocol errors.
 - **The Code:** The player writes the specific Chrome AI API syntax to solve the problem.
-- **The Result:** Scribe processes the data, and the visual state of the game updates (e.g., letters get sorted into bins, a long scroll shrinks into a tiny note).
+- **The Result:** Babel processes the signals, and the visual state of the game updates (e.g., data packets get routed correctly, compressed logs shrink, garbled signals get cleaned).
 
 ---
 
@@ -18,27 +18,27 @@ I want to create a game like https://flexboxfroggy.com/ to help developers to le
 
 To keep the charm of Flexbox Froggy while covering the full suite of Chrome Built-in AI APIs, we need a mascot whose "job" naturally involves handling information.
 
-Meet **"Scribe the Squirrel"**. Scribe is a forest librarian who needs to manage a massive influx of messages, books, and letters from all the animals in the woods.
+Meet **"Babel the Signal-Bot"**. Babel is a small, retro-futuristic robot floating in a digital "Cloud Terminal" who needs to manage the massive flow of data packets streaming through the internet.
 
-### Why Scribe?
+### Why Babel?
 
-A squirrel gathering and processing "nuts" (data) is the perfect metaphor for a local AI model processing information directly in the browser.
+A robot routing and processing data signals is the perfect metaphor for a local AI model processing information directly in the browser. Each API represents a specialized "Module" that Babel must activate to solve different types of data challenges.
 
 ---
 
-## 🐿️ Scribe’s AI Adventure: Level Breakdown
+## 🛰️ Babel's Signal Routing: Level Breakdown
 
-Each level requires the player to write a line of JavaScript using the `window.ai` or `window.translation` namespaces to help Scribe complete a task.
+Each level requires the player to write a line of JavaScript using the `window.ai` or `window.translation` namespaces to help Babel complete a task.
 
-| Level     | API                  | Scribe’s Goal                                                                                                                       |
-| --------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **1-3**   | **LanguageDetector** | Scribe finds a pile of letters. He needs to sort them by language so he knows who to send them to.                                  |
-| **4-6**   | **Translator**       | An owl from a faraway forest sent a message! Help Scribe translate it into "Squirrel-ish."                                          |
-| **7-9**   | **Summarizer**       | The Bear sent a 50-page complaint about the winter. Scribe needs a "TL;DR" to save time.                                            |
-| **10-12** | **Proofreader**      | Scribe is sleepy and making typos in his logbook. Help him fix his grammar and spelling.                                            |
-| **13-15** | **Writer**           | Scribe needs to write an invitation to the Nut Festival. Give him a topic and let him draft the text.                               |
-| **16-18** | **Rewriter**         | The invitation is too formal! Help Scribe rewrite it to sound "more fun" for the younger squirrels.                                 |
-| **19-24** | **Prompt API**       | The final challenge: Ask Scribe’s internal "brain" (Gemini Nano) to solve riddles or logic puzzles to unlock the Great Oak Library. |
+| Level     | API / Module         | Babel's Mission                                                                                                             |
+| --------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **1-3**   | **LanguageDetector** | **Sensor Array** - Babel needs to identify incoming data packets by language before they can be routed to the correct node. |
+| **4-6**   | **Translator**       | **Universal Bridge** - Babel must translate signals between nodes that don't speak the same digital language.               |
+| **7-9**   | **Summarizer**       | **Data Compaction** - The buffers are full! Babel must shrink massive server logs into digestible pings.                    |
+| **10-12** | **Proofreader**      | **Protocol Refinement** - Data corruption is causing typos in system messages. Babel must clean the signal.                 |
+| **13-15** | **Writer**           | **Signal Synthesis** - Babel must generate new data packets from scratch based on local prompts.                            |
+| **16-18** | **Rewriter**         | **Signal Transformation** - Babel must change the "tone" of data packets without losing their meaning.                      |
+| **19-24** | **Prompt API**       | **Core Intelligence** - Access Babel's Gemini Nano core to solve complex logic puzzles and prevent a total system collapse. |
 
 ---
 
@@ -63,21 +63,21 @@ Each level requires the player to write a line of JavaScript using the `window.a
 
 ### A Quick Example Level
 
-### 🐿️ Level 1: The Sorting Office
+### 🛰️ Level 1: First Contact
 
-### Title: Identifying the Leaf-Mail
+### Title: Identifying the Signal Source
 
-A mysterious gust of wind has blown letters from all over the forest into Scribe’s library. Before Scribe can reply, he needs to know what language they are written in! Your first task is to initialize the **Language Detector** and identify the language of the provided text.
+A stray data packet has arrived at Babel's Cloud Terminal from an unknown origin. Before Babel can route it to the correct destination, he needs to identify what language it's encoded in! Your first task is to initialize the **Language Detector** and identify the language of the incoming signal.
 
 ---
 
 ### Challenge Instructions
 
-To help Scribe, you must use the `window.LanguageDetector` API. Follow these steps:
+To help Babel, you must use the `window.LanguageDetector` API. Follow these steps:
 
-1. **Check Availability:** First, verify if the model is available on the user's device using `LanguageDetector.availability()`.
-2. **Create the Detector:** Use the `create()` method to initialize the detector.
-3. **Detect the Language:** Call the `detect()` method on the string `leafMail`.
+1. **Check Availability:** First, verify if the Sensor Array module is available on the user's device using `LanguageDetector.availability()`.
+2. **Create the Detector:** Use the `create()` method to initialize the sensor.
+3. **Detect the Language:** Call the `detect()` method on the string `dataPacket`.
 
 > **Note:** Since these are built-in APIs, they are asynchronous. Don't forget to use `await`!
 
@@ -134,12 +134,12 @@ async function checkLevel1Progress(userCode, userResult, detectorInstance) {
 ### Starter Code
 
 ```javascript
-const leafMail = "Bonjour Scribe! Comment vas-tu?";
+const dataPacket = "Bonjour Terminal! Statut du système?";
 
 // 1. Create the detector
 const detector = await LanguageDetector.create();
 
-// 2. Detect the language of leafMail
+// 2. Detect the language of dataPacket
 const results = // Your code here
 
 ```

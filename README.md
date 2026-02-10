@@ -1,10 +1,10 @@
-# 🐿️ Scribe's AI Adventure
+# �️ Babel's Signal Routing
 
 An interactive learning game to help developers master Chrome's Built-In AI APIs, inspired by [Flexbox Froggy](https://flexboxfroggy.com/).
 
 ## 🎮 Concept
 
-**Scribe the Squirrel** is the official librarian of the Great Oak Forest. Every day, animals send messages via "Leaf-Mail." Players write JavaScript code using Chrome's Built-In AI APIs to help Scribe process, translate, and generate text.
+**Babel the Signal-Bot** is a small, retro-futuristic robot floating in a digital "Cloud Terminal." Every moment, massive amounts of data flow through the internet. Players write JavaScript code using Chrome's Built-In AI APIs to help Babel route, translate, and process data packets to keep the digital world running smoothly.
 
 ## 🚀 Getting Started
 
@@ -55,7 +55,7 @@ src/
 │   ├── GameView/
 │   │   ├── LevelScene.tsx     # Main game visualization
 │   │   ├── ProgressIndicator.tsx
-│   │   └── ScribeCharacter.tsx
+│   │   └── ScribeCharacter.tsx  # Babel character visualization
 │   ├── LevelInfo/
 │   │   ├── LevelHeader.tsx    # Level title and API badge
 │   │   └── Instructions.tsx   # Markdown instructions renderer
@@ -128,15 +128,15 @@ export const levels: Level[] = [
 
 ## 🗺️ Level Roadmap
 
-| Levels | API              | Description                                  |
-| ------ | ---------------- | -------------------------------------------- |
-| 1-3    | LanguageDetector | Sort Leaf-Mail by detected language          |
-| 4-6    | Translator       | Translate messages between forest languages  |
-| 7-9    | Summarizer       | Create TL;DR summaries of long documents     |
-| 10-12  | Proofreader      | Fix grammar and spelling in Scribe's logbook |
-| 13-15  | Writer           | Draft invitations and announcements          |
-| 16-18  | Rewriter         | Adjust tone and style of messages            |
-| 19-24  | Prompt API       | Solve riddles using Gemini Nano              |
+| Levels | API              | Module                | Description                                           |
+| ------ | ---------------- | --------------------- | ----------------------------------------------------- |
+| 1-3    | LanguageDetector | Sensor Array          | Identify incoming data packets by language            |
+| 4-6    | Translator       | Universal Bridge      | Translate signals between different digital languages |
+| 7-9    | Summarizer       | Data Compaction       | Shrink massive server logs into digestible pings      |
+| 10-12  | Proofreader      | Protocol Refinement   | Clean corrupted data and fix typos in messages        |
+| 13-15  | Writer           | Signal Synthesis      | Generate new data packets from scratch                |
+| 16-18  | Rewriter         | Signal Transformation | Adjust tone and format of data packets                |
+| 19-24  | Prompt API       | Core Intelligence     | Solve complex logic puzzles with Gemini Nano          |
 
 ## 🛠️ Tech Stack
 
