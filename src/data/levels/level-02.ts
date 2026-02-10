@@ -103,7 +103,7 @@ async function validate(
   };
 }
 
-export const level02: Level = {
+const level: Level = {
   id: 2,
   title: "First Contact",
   api: "LanguageDetector",
@@ -117,3 +117,5 @@ export const level02: Level = {
   captureVariables: ["detector", "results"],
   validate,
 };
+
+export default level;

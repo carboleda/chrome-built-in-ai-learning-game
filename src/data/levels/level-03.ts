@@ -142,7 +142,7 @@ async function validate(
   };
 }
 
-export const level03: Level = {
+const level: Level = {
   id: 3,
   title: "Multi-Channel",
   api: "LanguageDetector",
@@ -155,3 +155,5 @@ export const level03: Level = {
   captureVariables: ["detector", "results", "primaryLanguage"],
   validate,
 };
+
+export default level;

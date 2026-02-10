@@ -94,7 +94,7 @@ async function validate(
   };
 }
 
-export const level01: Level = {
+const level: Level = {
   id: 1,
   title: "System Boot",
   api: "LanguageDetector",
@@ -105,3 +105,5 @@ export const level01: Level = {
   captureVariables: ["detector", "availability"],
   validate,
 };
+
+export default level;

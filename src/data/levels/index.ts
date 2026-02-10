@@ -9,9 +9,9 @@
  */
 
 import type { Level } from "../../engine/types";
-import { level01 } from "./level-01";
-import { level02 } from "./level-02";
-import { level03 } from "./level-03";
+import level01 from "./level-01";
+import level02 from "./level-02";
+import level03 from "./level-03";
 
 /**
  * All available levels in order
