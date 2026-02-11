@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import "./BabelCharacter.css";
 import { CharacterFace, type CharacterMood } from "./Face";
 
@@ -22,37 +23,48 @@ const getMoodMessage = (mood: CharacterMood) => {
 };
 
 const getConfigForMood = (mood: CharacterMood) => {
+  const colorMap: Record<string, string> = {
+    "gray-500": "#6b7280",
+    white: "#ffffff",
+    "red-400": "#f87171",
+    "yellow-400": "#facc15",
+    "green-400": "#4ade80",
+  };
+
   switch (mood) {
     case "thinking":
       return {
-        screenColor: "[#0a0f14]",
-        signalColor: "gray-500",
+        screenColor: "#0a0f14",
+        signalColor: colorMap["gray-500"],
       };
     case "happy":
       return {
-        screenColor: "[#0a0f14]",
-        signalColor: "white",
+        screenColor: "#0a0f14",
+        signalColor: colorMap["white"],
       };
     case "celebrating":
       return {
-        screenColor: "green-500",
-        signalColor: "white",
+        screenColor: "#22c55e",
+        signalColor: colorMap["white"],
       };
     case "error":
       return {
-        screenColor: "[#0a0f14]",
-        signalColor: "red-400",
+        screenColor: "#0a0f14",
+        signalColor: colorMap["red-400"],
       };
     default:
       return {
-        screenColor: "[#0a0f14]",
-        signalColor: "gray-500",
+        screenColor: "#0a0f14",
+        signalColor: colorMap["gray-500"],
       };
   }
 };
 
 export const Character: React.FC<BabelCharacterProps> = ({ mood }) => {
-  const { screenColor, signalColor } = getConfigForMood(mood);
+  const { screenColor, signalColor } = useMemo(
+    () => getConfigForMood(mood),
+    [mood],
+  );
 
   return (
     <div className="bg-background-dark font-display text-white overflow-hidden flex items-center justify-center">
@@ -71,7 +83,8 @@ export const Character: React.FC<BabelCharacterProps> = ({ mood }) => {
               <div className="w-40 h-32 bg-[#243647] border-4 border-[#344d65] rounded-xl flex items-center justify-center p-3 relative overflow-hidden shadow-2xl">
                 {/* CRT Screen */}
                 <div
-                  className={`w-full h-full bg-${screenColor} rounded shadow-inner flex items-center justify-center relative`}
+                  className="w-full h-full rounded shadow-inner flex items-center justify-center relative"
+                  style={{ backgroundColor: screenColor }}
                 >
                   <div className="crt-overlay absolute inset-0 rounded"></div>
 
@@ -96,7 +109,8 @@ export const Character: React.FC<BabelCharacterProps> = ({ mood }) => {
           <div className="flex items-center gap-2 bg-background-dark/80 backdrop-blur px-4 py-1.5 rounded-full border border-primary/30">
             <span className="size-2 rounded-full bg-primary animate-ping"></span>
             <span
-              className={`text-xs font-bold tracking-[0.2em] text-${signalColor} uppercase`}
+              className="text-xs font-bold tracking-[0.2em] uppercase"
+              style={{ color: signalColor }}
             >
               {getMoodMessage(mood)}
             </span>

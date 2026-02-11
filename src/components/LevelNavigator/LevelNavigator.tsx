@@ -42,7 +42,7 @@ export function LevelNavigator() {
         {/* Dropdown trigger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 rounded-lg border border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-medium)] px-3 py-1.5 text-sm font-medium text-white transition-all hover:border-[var(--color-signal-blue)] focus:border-[var(--color-signal-blue)] focus:outline-none"
+          className="flex items-center gap-2 rounded-lg border border-(--color-terminal-light)/30 bg-(--color-terminal-medium) px-3 py-1.5 text-sm font-medium text-white transition-all hover:border-(--color-signal-blue) focus:border-(--color-signal-blue) focus:outline-none"
         >
           <span className="flex items-center gap-2">
             {completedLevels.includes(currentLevel?.id ?? 0) ? (
@@ -54,7 +54,7 @@ export function LevelNavigator() {
                 {currentLevel?.id}
               </span>
             )}
-            <span className="max-w-[180px] truncate">
+            <span className="max-w-45 truncate">
               Level {currentLevel?.id}: {currentLevel?.title}
             </span>
           </span>
@@ -75,7 +75,7 @@ export function LevelNavigator() {
 
         {/* Dropdown menu */}
         {isOpen && (
-          <div className="absolute right-0 top-full z-50 mt-1 max-h-64 w-72 overflow-auto rounded-lg border border-[var(--color-terminal-light)]/30 bg-[var(--color-terminal-dark)] py-1 shadow-xl">
+          <div className="absolute right-0 top-full z-50 mt-1 max-h-64 w-72 overflow-auto rounded-lg border border-(--color-terminal-light)/30 bg-(--color-terminal-dark) py-1 shadow-xl">
             {levels.map((level) => {
               const isCompleted = completedLevels.includes(level.id);
               const isCurrent = currentLevel?.id === level.id;
@@ -86,17 +86,17 @@ export function LevelNavigator() {
                   onClick={() => handleSelect(level.id)}
                   className={`flex w-full items-center gap-3 px-3 py-2 text-left text-sm transition-colors ${
                     isCurrent
-                      ? "bg-[var(--color-terminal-medium)] text-[var(--color-signal-blue)]"
-                      : "text-gray-300 hover:bg-[var(--color-terminal-medium)]/50"
+                      ? "bg-(--color-terminal-medium) text-(--color-signal-blue)"
+                      : "text-gray-300 hover:bg-(--color-terminal-medium)/50"
                   }`}
                 >
                   {/* Status indicator */}
                   {isCompleted ? (
-                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-600 text-xs text-white">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-600 text-xs text-white">
                       ✓
                     </span>
                   ) : (
-                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-gray-500 text-xs text-gray-300">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gray-500 text-xs text-gray-300">
                       {level.id}
                     </span>
                   )}
