@@ -44,17 +44,6 @@ export function ProgressIndicator({
           transition={{ duration: 0.5, ease: "easeOut" }}
         />
       </div>
-
-      {/* Completion Message */}
-      {isComplete && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-3 text-center text-lg font-bold text-[--color-neon-green]"
-        >
-          ✨ Module Complete!
-        </motion.div>
-      )}
     </div>
   );
 }
