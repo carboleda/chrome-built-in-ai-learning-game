@@ -8,13 +8,13 @@
  * 3. Add it to the levels array
  */
 
-import type { Level } from "../../engine/types";
-import level01 from "./level-01";
-import level02 from "./level-02";
-import level03 from "./level-03";
-import level04 from "./level-04";
-import level05 from "./level-05";
-import level06 from "./level-06";
+import type { Level } from "../engine/types";
+import level01 from "./detector/level-01";
+import level02 from "./detector/level-02";
+import level03 from "./detector/level-03";
+import level04 from "./translator/level-04";
+import level05 from "./translator/level-05";
+import level06 from "./translator/level-06";
 
 /**
  * All available levels in order
