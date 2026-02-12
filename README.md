@@ -132,11 +132,11 @@ export const levels: Level[] = [
 | ------ | ---------------- | --------------------- | ----------------------------------------------------- |
 | 1-3    | LanguageDetector | Sensor Array          | Identify incoming data packets by language            |
 | 4-6    | Translator       | Universal Bridge      | Translate signals between different digital languages |
-| 7-9    | Summarizer       | Data Compaction       | Shrink massive server logs into digestible pings      |
-| 10-12  | Proofreader      | Protocol Refinement   | Clean corrupted data and fix typos in messages        |
-| 13-15  | Writer           | Signal Synthesis      | Generate new data packets from scratch                |
-| 16-18  | Rewriter         | Signal Transformation | Adjust tone and format of data packets                |
-| 19-24  | Prompt API       | Core Intelligence     | Solve complex logic puzzles with Gemini Nano          |
+| 7-10   | Summarizer       | Data Compaction       | Shrink massive server logs into digestible pings      |
+| 11-13  | Proofreader      | Protocol Refinement   | Clean corrupted data and fix typos in messages        |
+| 14-16  | Writer           | Signal Synthesis      | Generate new data packets from scratch                |
+| 17-19  | Rewriter         | Signal Transformation | Adjust tone and format of data packets                |
+| 20-25  | Prompt API       | Core Intelligence     | Solve complex logic puzzles with Gemini Nano          |
 
 ## 🛠️ Tech Stack
 
