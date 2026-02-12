@@ -26,6 +26,11 @@ export function Instructions({ content }: InstructionsProps) {
               {children}
             </h3>
           ),
+          h4: ({ children }) => (
+            <h4 className="mb-2 mt-3 text-sm font-semibold text-white">
+              {children}
+            </h4>
+          ),
           p: ({ children }) => <p className="mb-3 text-gray-300">{children}</p>,
           code: ({ className, children }) => {
             const isBlock = className?.includes("language-");
@@ -59,6 +64,16 @@ export function Instructions({ content }: InstructionsProps) {
             </blockquote>
           ),
           hr: () => <hr className="my-6 border-(--color-terminal-light)/30" />,
+          a: ({ children, href }) => (
+            <a
+              href={href}
+              className="text-(--color-neon-green) underline hover:text-(--color-neon-green-bright)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {children}
+            </a>
+          ),
         }}
       >
         {content}
