@@ -6,7 +6,7 @@
     "ai-journey-firebase": {
       "hosting": {
         "app": [
-          "chromeai-game--ai-journey-firebase.us-east4.hosted.app"
+          "chromeai-game--ai-journey-firebase"
         ]
       }
     }
