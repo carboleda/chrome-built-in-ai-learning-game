@@ -9,24 +9,14 @@
  */
 
 import type { Level } from "../engine/types";
-import level01 from "./detector/level-01";
-import level02 from "./detector/level-02";
-import level03 from "./detector/level-03";
-import level04 from "./translator/level-04";
-import level05 from "./translator/level-05";
-import level06 from "./translator/level-06";
+import { detector } from "./detector";
+import { translator } from "./translator";
+import { summarizer } from "./summarizer";
 
 /**
  * All available levels in order
  */
-export const levels: Level[] = [
-  level01,
-  level02,
-  level03,
-  level04,
-  level05,
-  level06,
-];
+export const levels: Level[] = [...detector, ...translator, ...summarizer];
 
 /**
  * Get a level by its ID
