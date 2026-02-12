@@ -3,8 +3,10 @@ name: Deploy to GitHub Pages
 on:
   release:
     types: [published]
-  pull_request:
-    types: [opened, reopened, synchronize]
+  # pull_request:
+  #   types: [opened, reopened, synchronize]
+  push:
+    branches: [main]
 
 jobs:
   deploy:
@@ -15,9 +17,9 @@ jobs:
       pages: write
       id-token: write
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout code
