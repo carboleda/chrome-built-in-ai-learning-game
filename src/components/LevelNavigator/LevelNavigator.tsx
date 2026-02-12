@@ -6,7 +6,7 @@
  */
 
 import { useGameStore } from "../../store/gameStore";
-import { levels } from "../../data/levels";
+import { levels } from "../../levels";
 
 export function LevelNavigator() {
   const { currentLevel, completedLevels, setLevel } = useGameStore();

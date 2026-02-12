@@ -12,7 +12,7 @@ import {
   getNextLevel,
   getFirstLevel,
   levels,
-} from "../data/levels/index";
+} from "../levels/index";
 
 // Debounce timer for autosaving user's code per-level
 let saveTimer: ReturnType<typeof setTimeout> | null = null;

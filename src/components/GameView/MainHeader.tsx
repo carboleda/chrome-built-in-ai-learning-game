@@ -1,5 +1,5 @@
 import { LevelNavigator } from "../LevelNavigator/LevelNavigator";
-import { levels } from "../../data/levels";
+import { levels } from "../../levels";
 import { useGameStore } from "../../store/gameStore";
 import { LevelHeader } from "../LevelInfo/LevelHeader";
 

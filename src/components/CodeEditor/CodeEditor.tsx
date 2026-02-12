@@ -6,7 +6,7 @@
 
 import Editor from "@monaco-editor/react";
 import { useGameStore } from "../../store/gameStore";
-import { isLastLevel } from "../../data/levels";
+import { isLastLevel } from "../../levels";
 
 export function CodeEditor() {
   const {
