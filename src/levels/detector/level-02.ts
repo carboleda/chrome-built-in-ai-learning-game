@@ -44,7 +44,7 @@ const results = ______________
 const totalSteps = 3;
 
 /**
- * Validation function for Level 1
+ * Validation function for Level 2
  * Checks progressive completion of the LanguageDetector challenge
  */
 async function validate(

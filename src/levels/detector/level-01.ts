@@ -43,7 +43,7 @@ if (availability === 'available') {
 const totalSteps = 2;
 
 /**
- * Validation function for Level 2
+ * Validation function for Level 1
  * Checks that user properly checks availability before creating detector
  */
 async function validate(
