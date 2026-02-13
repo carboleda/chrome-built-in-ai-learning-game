@@ -5,7 +5,7 @@
  */
 
 import { motion } from "framer-motion";
-import type { ValidationResult } from "../../engine/types";
+import type { ValidationResult } from "../../../engine/types";
 
 interface ProgressIndicatorProps {
   validation: ValidationResult | null;

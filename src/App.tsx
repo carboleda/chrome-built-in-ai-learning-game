@@ -12,6 +12,7 @@ import { LevelScene } from "./components/GameView/LevelScene";
 import { Instructions } from "./components/LevelInfo/Instructions";
 import { ApiWarning } from "./components/ApiWarning/ApiWarning";
 import { MainHeader } from "./components/GameView/MainHeader";
+import { ProgressFeedback } from "./components/GameView/ProgressFeedback";
 
 function App() {
   const { currentLevel, initGame } = useGameStore();
@@ -54,6 +55,12 @@ function App() {
               {/* Instructions - full height, scrollable */}
               <div className="min-h-0 flex-1 overflow-auto">
                 <Instructions content={currentLevel.instructions} />
+              </div>
+
+              {/* Progress Feedback - fixed height at bottom */}
+              <div className="flex-0 border-t border-(--color-terminal-light)/30">
+                {/* Progress Feedback Component */}
+                <ProgressFeedback />
               </div>
             </div>
           }
