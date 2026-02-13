@@ -124,6 +124,7 @@ async function validate(
     progress,
     complete: progress === totalSteps,
     message: messages.join("\n"),
+    expectedOutput: summary,
   };
 }
 

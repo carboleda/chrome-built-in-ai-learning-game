@@ -23,8 +23,24 @@ export function LevelScene() {
     return CharacterMood.Idle;
   };
 
+  const getOutput = () => {
+    if (!validationResult?.complete && !validationResult?.expectedOutput) {
+      return "Run your code to see execution results here...";
+    }
+
+    if (validationResult?.complete && !validationResult?.expectedOutput) {
+      return "Congratulations! You've completed this level!";
+    }
+
+    if (typeof validationResult.expectedOutput === "object") {
+      return JSON.stringify(validationResult.expectedOutput, null, 2);
+    }
+
+    return validationResult.expectedOutput as string;
+  };
+
   return (
-    <div className="flex h-full flex-row items-center justify-center gap-8 p-8">
+    <div className="flex h-full flex-row center justify-center gap-4 p-2">
       {/* Babel Character */}
       <motion.div
         initial={{ x: 0, opacity: 1 }}
@@ -33,6 +49,13 @@ export function LevelScene() {
       >
         <Character mood={getMood()} />
       </motion.div>
+
+      <div className="flex-1">
+        {/* Console */}
+        <div className="h-full rounded-lg bg-(--color-terminal-dark)/50 ring-1 ring-(--color-signal-blue)/30 overflow-y-auto p-4">
+          <code className="text-sm">{getOutput()}</code>
+        </div>
+      </div>
     </div>
   );
 }

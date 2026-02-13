@@ -24,6 +24,7 @@ export interface ValidationResult {
   complete: boolean;
   /** Optional message to display to user */
   message?: string;
+  expectedOutput?: unknown;
 }
 
 /**

@@ -1,26 +1,11 @@
-import { useMemo } from "react";
 import "./BabelCharacter.css";
+import { useMemo } from "react";
 import { CharacterFace, type CharacterMood } from "./Face";
 
 interface BabelCharacterProps {
   /** Animation state based on progress */
   mood: CharacterMood;
 }
-
-const getMoodMessage = (mood: CharacterMood) => {
-  switch (mood) {
-    case "thinking":
-      return "Processing data packets...";
-    case "happy":
-      return "Signal routing successful! Keep going!";
-    case "celebrating":
-      return "System optimized! Module complete!";
-    case "error":
-      return "Error detected! Check your code and try again.";
-    default:
-      return "Hello! I'm Babel, your Signal-Bot assistant.";
-  }
-};
 
 const getConfigForMood = (mood: CharacterMood) => {
   const colorMap: Record<string, string> = {
@@ -73,7 +58,7 @@ export const Character: React.FC<BabelCharacterProps> = ({ mood }) => {
         {/* Babel the Signal-Bot */}
         <div className="relative group">
           {/* Bot Body */}
-          <div className="relative w-36 h-48 flex flex-col items-center">
+          <div className="relative w-36 h-48 flex flex-col items-center scale-75">
             {/* Floating Animation Wrapper */}
             <div className="relative flex flex-col items-center">
               {/* Antenna */}
@@ -102,18 +87,6 @@ export const Character: React.FC<BabelCharacterProps> = ({ mood }) => {
               {/* Repulsor Glow */}
               <div className="w-16 h-4 bg-primary/30 blur-lg mt-2 rounded-full"></div>
             </div>
-          </div>
-        </div>
-        {/* Status Label */}
-        <div className="flex flex-col items-center">
-          <div className="flex items-center gap-2 bg-background-dark/80 backdrop-blur px-4 py-1.5 rounded-full border border-primary/30">
-            <span className="size-2 rounded-full bg-primary animate-ping"></span>
-            <span
-              className="text-xs font-bold tracking-[0.2em] uppercase"
-              style={{ color: signalColor }}
-            >
-              {getMoodMessage(mood)}
-            </span>
           </div>
         </div>
       </div>
