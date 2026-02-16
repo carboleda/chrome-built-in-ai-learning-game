@@ -19,7 +19,7 @@ export const ProgressFeedback: React.FC = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="w-full max-w-md"
         >
-          <div className="w-fit flex flex-col gap-4 p-4">
+          <div className="w-full flex flex-col gap-4">
             <ProgressIndicator
               validation={validationResult}
               totalSteps={currentLevel?.totalSteps || 0}

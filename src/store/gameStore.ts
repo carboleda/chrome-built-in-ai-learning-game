@@ -117,6 +117,10 @@ export const useGameStore = create<GameStore>()(
               : null,
             executionError: null,
           });
+
+          if (isCompleted) {
+            get().runCode();
+          }
         }
       },
 
@@ -136,6 +140,10 @@ export const useGameStore = create<GameStore>()(
               : null,
             executionError: null,
           });
+
+          if (isCompleted) {
+            get().runCode();
+          }
         }
       },
 

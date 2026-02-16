@@ -1,11 +1,7 @@
 import "./BabelCharacter.css";
 import { useMemo } from "react";
-import { CharacterFace, type CharacterMood } from "./Face";
-
-interface BabelCharacterProps {
-  /** Animation state based on progress */
-  mood: CharacterMood;
-}
+import { CharacterFace, CharacterMood } from "./Face";
+import { useGameStore } from "../../../store/gameStore";
 
 const getConfigForMood = (mood: CharacterMood) => {
   const colorMap: Record<string, string> = {
@@ -45,7 +41,18 @@ const getConfigForMood = (mood: CharacterMood) => {
   }
 };
 
-export const Character: React.FC<BabelCharacterProps> = ({ mood }) => {
+export const Character: React.FC = () => {
+  const { validationResult, executionError, isExecuting } = useGameStore();
+  // Determine Babel's mood based on state
+  const mood = useMemo(() => {
+    if (executionError) return CharacterMood.Error;
+    if (isExecuting) return CharacterMood.Thinking;
+    if (validationResult?.complete) return CharacterMood.Celebrating;
+    if (validationResult && validationResult.progress > 0)
+      return CharacterMood.Happy;
+    return CharacterMood.Idle;
+  }, [validationResult, executionError, isExecuting]);
+
   const { screenColor, signalColor } = useMemo(
     () => getConfigForMood(mood),
     [mood],
