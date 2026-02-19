@@ -23,3 +23,10 @@ body {
   @apply h-full w-full overflow-hidden;
 }
 
+.custom-scrollbar {
+  @apply [&::-webkit-scrollbar]:w-3.5;
+  @apply [&::-webkit-scrollbar-track]:bg-gray-100;
+  @apply [&::-webkit-scrollbar-thumb]:bg-gray-300;
+  @apply dark:[&::-webkit-scrollbar-track]:bg-neutral-700/30;
+  @apply dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500/30;
+}
