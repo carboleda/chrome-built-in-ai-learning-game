@@ -13,6 +13,7 @@ import { ApiWarning } from "./components/ApiWarning/ApiWarning";
 import { MainHeader } from "./components/GameView/MainHeader";
 import { ProgressFeedback } from "./components/GameView/ProgressFeedback";
 import { Character } from "./components/GameView/BabelCharacter/BabelCharacterV2";
+import { Footer } from "./components/Layout/Footer";
 
 function App() {
   const { currentLevel, initGame } = useGameStore();
@@ -38,10 +39,7 @@ function App() {
         <SplitPane
           left={
             <div className="flex h-full flex-col overflow-hidden">
-              {/* Game Title Header */}
               <MainHeader />
-
-              {/* Game Scene - bottom */}
               <LevelScene />
             </div>
           }
@@ -68,6 +66,7 @@ function App() {
           }
         />
       </div>
+      <Footer />
     </div>
   );
 }
