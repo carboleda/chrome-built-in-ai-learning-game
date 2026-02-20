@@ -72,7 +72,7 @@ const summarizer = ______________
 const summary = ______________
 `;
 
-const totalSteps = 5;
+const totalSteps = 4;
 
 /**
  * Validation function for Level 8
@@ -137,18 +137,6 @@ async function validate(
     }
   } else {
     messages.push("○ Generate and extract the TL;DR summary");
-  }
-
-  // Step 5: Verify context parameter was optional but bonus if attempted
-  if (
-    userCode.includes("{ context") ||
-    userCode.includes("context:") ||
-    userCode.includes("context =")
-  ) {
-    progress++;
-    messages.push("✓ Advanced: Optional context parameter handled");
-  } else {
-    messages.push("○ Optional: Add context parameter for better results");
   }
 
   return {
