@@ -8,6 +8,7 @@ import type { Level, ValidationResult, ExecutionResult } from "../engine/types";
 import { executeUserCode } from "../engine/codeRunner";
 import { validateLevel } from "../engine/validator";
 import {
+  loadAllLevels,
   getLevelById,
   getNextLevel,
   getFirstLevel,
@@ -37,6 +38,8 @@ interface GameState {
   completedLevels: number[];
   /** Solutions for completed levels (levelId -> code) */
   levelSolutions: Record<number, string>;
+  /** Whether levels have been loaded */
+  levelsLoaded: boolean;
 }
 
 /**
@@ -44,7 +47,7 @@ interface GameState {
  */
 interface GameActions {
   /** Initialize the game with the first level */
-  initGame: () => void;
+  initGame: () => Promise<void>;
   /** Set the current level by ID */
   setLevel: (levelId: number) => void;
   /** Return current code for the active level */
@@ -78,6 +81,7 @@ const initialState: GameState = {
   executionError: null,
   completedLevels: [],
   levelSolutions: {},
+  levelsLoaded: false,
 };
 
 /**
@@ -88,7 +92,10 @@ export const useGameStore = create<GameStore>()(
     (set, get) => ({
       ...initialState,
 
-      initGame: () => {
+      initGame: async () => {
+        // Load all levels dynamically (code-split chunks)
+        await loadAllLevels();
+
         const { completedLevels, currentLevelId } = get();
 
         // Prefer restoring the last viewed level if available
@@ -116,11 +123,15 @@ export const useGameStore = create<GameStore>()(
               ? { progress: targetLevel.totalSteps, complete: true }
               : null,
             executionError: null,
+            levelsLoaded: true,
           });
 
           if (isCompleted) {
             get().runCode();
           }
+        } else {
+          // Mark as loaded even if no level is found
+          set({ levelsLoaded: true });
         }
       },
 

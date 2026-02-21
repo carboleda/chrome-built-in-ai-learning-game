@@ -21,4 +21,8 @@ export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(packageJson.version),
   },
+  build: {
+    // Suppress the warning for the main app bundle since levels are code-split dynamically
+    chunkSizeWarningLimit: 1000,
+  },
 });
