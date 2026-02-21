@@ -7,8 +7,8 @@
 
 import type { ExecutionResult, LevelContext } from "./types";
 
-/** Default timeout for code execution (5 seconds) */
-const EXECUTION_TIMEOUT = 10000;
+/** Default timeout for code execution (20 seconds) */
+const EXECUTION_TIMEOUT = 20000;
 
 /**
  * Creates a timeout promise that rejects after specified milliseconds
