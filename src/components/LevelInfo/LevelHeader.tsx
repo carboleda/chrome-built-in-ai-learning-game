@@ -4,7 +4,8 @@
  * Displays the current level number, title, and API being taught.
  */
 
-import type { Level } from "../../engine/types";
+import { AIApiUrls, type Level } from "../../engine/types";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 interface LevelHeaderProps {
   level: Level;
@@ -19,8 +20,15 @@ export function LevelHeader({ level }: LevelHeaderProps) {
         </span>
         <h2 className="text-md font-bold text-white">{level.title}</h2>
 
-        <p className="text-sm text-(--color-neon-green) align-right ml-auto">
-          API: {level.api}
+        <p className="text-sm text-(--color-neon-green) hover:text-(--color-neon-green)/80 align-right ml-auto">
+          <a
+            href={AIApiUrls[level.api]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            API: {level.api}{" "}
+            <FaExternalLinkAlt size={12} className="inline-block ml-1" />
+          </a>
         </p>
       </div>
     </div>

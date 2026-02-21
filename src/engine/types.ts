@@ -14,6 +14,22 @@ export type AIApiType =
   | "Rewriter"
   | "LanguageModel";
 
+export const AIApiUrls: Record<AIApiType, string> = {
+  LanguageDetector:
+    "https://developer.chrome.com/docs/ai/language-detection#run_the_language_detector",
+  Translator:
+    "https://developer.chrome.com/docs/ai/translator-api#language-support",
+  Summarizer:
+    "https://developer.chrome.com/docs/ai/summarizer-api#api-functions",
+  Proofreader:
+    "https://developer.chrome.com/docs/ai/proofreader-api#use_the_proofreader_api",
+  Writer: "https://developer.chrome.com/docs/ai/writer-api#use_the_writer_api",
+  Rewriter:
+    "https://developer.chrome.com/docs/ai/rewriter-api#use_the_rewriter_api",
+  LanguageModel:
+    "https://developer.chrome.com/docs/ai/prompt-api#model_parameters",
+};
+
 /**
  * Result of validating user's code submission
  */
