@@ -32,6 +32,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          VITE_GOOGLE_TAG_ID: ${{ secrets.VITE_GOOGLE_TAG_ID }}
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
