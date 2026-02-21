@@ -20,7 +20,7 @@ Two critical server nodes have lost communication: a Japanese data center and a 
 
 Use the \`Translator\` API to bridge the communication gap by translating Japanese text to Spanish:
 
-1. **Activate the Bridge:** Create a new Translator instance using \`Translator.create()\` and specify Japanese as the source language and Spanish as the target language.
+1. **Activate the Bridge:** Create a new Translator instance using \`Translator.create()\` and specify **Japanese** as the source language and **Spanish** as the target language.
 2. **Configure the Translation Route:** Call the \`translate()\` method with the Japanese status message.
 3. **Establish the Connection:** Store the Spanish translation so the Spanish hub can process the incoming signal.
 
@@ -60,7 +60,10 @@ async function validate(
   if (
     userCode.includes("Translator.create") &&
     userCode.includes("sourceLanguage") &&
-    userCode.includes("targetLanguage")
+    userCode.includes("targetLanguage") &&
+    userCode.includes("'ja'") &&
+    userCode.includes("'es'") &&
+    userCode.indexOf("'ja'") < userCode.indexOf("'es'")
   ) {
     progress++;
     messages.push("✓ Cross-region bridge activated");

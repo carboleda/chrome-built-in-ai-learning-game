@@ -20,16 +20,9 @@ A stray data packet has arrived at Babel's Cloud Terminal from an unknown origin
 
 To help Babel analyze the data packet, you must use the \`LanguageDetector\` API. Follow these steps:
 
-1. **Check Availability:** First, verify if the module is available using \`LanguageDetector.availability()\`.
+1. **Check Availability:** First, verify if the module is available using <abbr title="<b>Resolves to one of the following values:</b>\nunavailable | downloadable | downloading | available">LanguageDetector.availability()</abbr>.
 2. **Activate the Sensor:** Use the \`LanguageDetector.create()\` method to initialize the detector.
-3. **Analyze the Signal:** Call the \`detect()\` method on the \`dataPacket\` string. Don't forget to \`await\` for the result!
-
-### Expected Output
-
-The \`results\` variable should contain an array of detected languages with confidence scores, like:
-\`\`\`javascript
-[{ detectedLanguage: 'fr', confidence: 0.95 }]
-\`\`\`
+3. **Analyze the Signal:** Call the <abbr title="<b>Resolves to an array of detected languages\n with confidence scores:</b>\n[{ detectedLanguage: 'fr', confidence: 0.95 }]">detect()</abbr> method on the \`dataPacket\` string. Don't forget to \`await\` for the result!
 `;
 
 const starterCode = `// Incoming data packet from unknown origin

@@ -26,14 +26,7 @@ Use the \`LanguageDetector\` API to:
 
 ### Expected Output
 
-\`\`\`javascript
-[
-  { detectedLanguage: 'en', confidence: 0.92 },
-  { detectedLanguage: 'es', confidence: 0.65 }
-]
-\`\`\`
-
-The \`primaryLanguage\` should be the language code from the entry with the highest confidence score (in this example: \`'en'\`).
+The \`primaryLanguage\` should be the <abbr title="<b>Format ISO 639-1 (two-letter) e.g.,</b>\n'en' (English), 'es' (Spanish), 'fr' (French), 'de' (German)">language code</abbr> from the entry with the highest confidence score.
 `;
 
 const starterCode = `// Multi-channel data packet with mixed languages
@@ -139,7 +132,7 @@ async function validate(
     progress,
     complete: progress === totalSteps,
     message: messages.join("\n"),
-    expectedOutput: primaryLanguage as any,
+    expectedOutput: primaryLanguage,
   };
 }
 

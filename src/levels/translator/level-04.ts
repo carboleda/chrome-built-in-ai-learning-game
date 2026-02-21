@@ -16,13 +16,13 @@ const instructions = `
 
 A critical status report has arrived from a French server node, but Babel's central core only understands English. Without a translation, Babel won't know if the server is running normally or if there's a critical failure!
 
-Your task is to activate Babel's **Universal Bridge** module (Translator) to convert the incoming French signal into English so the system can understand it.
+Your task is to activate Babel's **Universal Bridge** module (Translator) to convert the incoming **French** signal into **English** so the system can understand it.
 
 ### Challenge Instructions
 
 Use the \`Translator\` API to translate the French status report to English:
 
-1. **Activate the Bridge:** Use \`Translator.create()\` with source language (French) and target language (English) options.
+1. **Activate the Bridge:** Use <abbr title="<b>Receives an object with sourceLanguage and targetLanguage properties</b>\n{ sourceLanguage: '...', targetLanguage: '...' }">Translator.create()</abbr> with source language **French** and target language **English** options.
 2. **Process the Text:** Call the \`translate()\` method with the French data packet.
 3. **Capture the Result:** Store the translated English text in a variable for Babel to process.
 
@@ -62,7 +62,10 @@ async function validate(
   if (
     userCode.includes("Translator.create") &&
     userCode.includes("sourceLanguage") &&
-    userCode.includes("targetLanguage")
+    userCode.includes("targetLanguage") &&
+    userCode.includes("'fr'") &&
+    userCode.includes("'en'") &&
+    userCode.indexOf("'fr'") < userCode.indexOf("'en'")
   ) {
     progress++;
     messages.push("✓ Translator bridge activated with language settings");

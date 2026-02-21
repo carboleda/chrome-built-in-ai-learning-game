@@ -23,20 +23,13 @@ Your task is to use Babel's **Streaming Bridge** - a special mode of the Transla
 
 Use the streaming translation feature to process the long text in real-time chunks:
 
-1. **Activate the Streaming Bridge:** Create a Translator instance using \`Translator.create()\` with the target language (Spanish).
+1. **Activate the Streaming Bridge:** Create a Translator instance using \`Translator.create()\` with the target language **Spanish**.
 2. **Initialize the Stream:** Call the \`translateStreaming()\` method with the long text.
-3. **Process the Chunks:** Use a \`for await\` loop to iterate through each chunk of the translated stream, logging or processing each piece as it arrives.
+3. **Process the Chunks:** Use a <abbr title="<b>Syntax:</b>\nfor await (const chunk of stream) {}">for await</abbr> loop to iterate through each chunk of the translated stream, appending each piece to the \`translated\` variable as it arrives.
 
 ### Expected Output
 
 Your code should output each translated chunk as it streams in, allowing Babel to process massive texts in real-time without waiting for the entire translation to complete!
-
-\`\`\`javascript
-const stream = translator.translateStreaming(longText);
-for await (const chunk of stream) {
-  console.log(chunk);
-}
-\`\`\`
 `;
 
 const starterCode = `// Massive system log from the Archive
@@ -49,10 +42,11 @@ const translator = await Translator._________________;
 const stream = translator._________________;
 
 // 3. Process each chunk as it arrives
+let translatedText = "";
 ________________________
 `;
 
-const totalSteps = 4;
+const totalSteps = 5;
 
 /**
  * Validation function for Level 6
@@ -67,6 +61,7 @@ async function validate(
 
   const { capturedInstances } = executionResult;
   const translator = capturedInstances.translator;
+  const translatedText = capturedInstances.translatedText as string | undefined;
 
   // Step 1: Check if they called Translator.create() with language options
   if (
@@ -114,8 +109,16 @@ async function validate(
     progress++;
     messages.push("✓ Stream chunks processing with for await loop!");
   } else {
+    messages.push("○ Use a for await loop to consume stream chunks");
+  }
+
+  // Step 5: Check if translated variable is being built up with chunks
+  if (translatedText && translatedText.length > 0) {
+    progress++;
+    messages.push("✓ Translated text is being built up with incoming chunks");
+  } else {
     messages.push(
-      "○ Use a for await loop to consume stream chunks: for await (const chunk of stream)",
+      "○ Inside the for await loop, append each chunk to the translated variable",
     );
   }
 
@@ -123,6 +126,7 @@ async function validate(
     progress,
     complete: progress === totalSteps,
     message: messages.join("\n"),
+    expectedOutput: translatedText,
   };
 }
 
@@ -136,7 +140,7 @@ const level: Level = {
   context: {
     // Long text is in the starter code for user to translate
   },
-  captureVariables: ["translator", "stream"],
+  captureVariables: ["translator", "stream", "translatedText"],
   validate,
 };
 

@@ -5,6 +5,9 @@
  */
 
 import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 interface InstructionsProps {
   content: string;
@@ -14,6 +17,8 @@ export function Instructions({ content }: InstructionsProps) {
   return (
     <div className="prose prose-invert max-w-none overflow-auto bg-linear-to-br from-(--color-terminal-dark) to-(--color-terminal-medium) px-4 pb-2 text-sm">
       <Markdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
         components={{
           // Custom styling for markdown elements
           h2: ({ children }) => (
@@ -49,12 +54,12 @@ export function Instructions({ content }: InstructionsProps) {
           },
           pre: ({ children }) => <>{children}</>,
           ol: ({ children }) => (
-            <ol className="mb-4 list-inside list-decimal space-y-2 text-gray-300">
+            <ol className="mb-4 list-inside list-decimal space-y-1 text-gray-300">
               {children}
             </ol>
           ),
           ul: ({ children }) => (
-            <ul className="mb-4 list-inside list-disc space-y-2 text-gray-300">
+            <ul className="mb-4 list-inside list-disc space-y-1 text-gray-300">
               {children}
             </ul>
           ),
@@ -74,6 +79,35 @@ export function Instructions({ content }: InstructionsProps) {
               {children}
             </a>
           ),
+          abbr: ({ children, title }) => {
+            const id = title
+              ?.substring(0, 30)
+              .replace(/\W+/g, "")
+              .toLowerCase()
+              .trim();
+            return (
+              <>
+                <code
+                  id={id}
+                  className="rounded bg-(--color-circuit-gray) px-1.5 py-0.5 text-sm text-(--color-neon-green) hover:text-(--color-neon-green-bright) underline cursor-pointer"
+                >
+                  {children}
+                </code>
+                <ReactTooltip
+                  anchorSelect={`#${id}`}
+                  openOnClick
+                  place="bottom"
+                  className="instruction-tooltip"
+                >
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: title?.replaceAll("\n", "<br />") || "",
+                    }}
+                  />
+                </ReactTooltip>
+              </>
+            );
+          },
         }}
       >
         {content}

@@ -20,7 +20,7 @@ Babel is ready to analyze data packets, but first we need to verify that the **S
 
 Before creating the detector, you must check the **availability** of the system module.
 
-1. Call \`LanguageDetector.availability()\`.
+1. Call <abbr title="<b>Resolves to one of the following values:</b>\nunavailable | downloadable | downloading | available">LanguageDetector.availability()</abbr>.
 2. Await the result of the availability check.
 3. Only if it returns \`'available'\`, activate the detector module.
 

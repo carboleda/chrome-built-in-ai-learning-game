@@ -30,3 +30,7 @@ body {
   @apply dark:[&::-webkit-scrollbar-track]:bg-neutral-700/30;
   @apply dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500/30;
 }
+
+.instruction-tooltip {
+  @apply !bg-(--color-terminal-light) !text-white !text-xs !opacity-100 !rounded py-1 px-2;
+}
